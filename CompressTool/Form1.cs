@@ -37,8 +37,6 @@ namespace CompressTool
         //操控email頁面
         private void showEmail()
         {
-            //email.testString = "test";
-
             email.changeText(target_address);
             email.ShowDialog();
         }
@@ -218,7 +216,7 @@ namespace CompressTool
             {
                 string targetPath = Path.GetDirectoryName(sourceFilePath);
                 string name = Path.GetFileNameWithoutExtension(sourceFilePath);
-                target_address = sourceFilePath + "@/" + name;
+                //target_address = targetPath + @"\" + name;
                 if (!hasFile)
                 {
                     MessageBox.Show("請選擇來源路徑.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -233,7 +231,7 @@ namespace CompressTool
             else
             {
                 string targetPath = Path.GetDirectoryName(sourceFolderPath);
-                target_address = sourceFolderPath;
+                //target_address = sourceFolderPath;
                 if (!hasFolder)
                 {
                     MessageBox.Show("請選擇來源路徑.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -299,8 +297,8 @@ namespace CompressTool
                 {
                     string name = Path.GetFileName(sourcePath);
                     string newPath = targetPath + @"\" + name;
-                    Directory.CreateDirectory(newPath);
-                    string zipPath = newPath + @"\" + name + ".zip";
+                    CheckDirectory(newPath);
+                    string zipPath = newPath + "_壓縮檔" + @"\" + name + ".zip";
                     Thread thread = new Thread(t =>
                     {
                         using (ZipFile zip = new ZipFile(Encoding.UTF8))
@@ -327,8 +325,8 @@ namespace CompressTool
                 {
                     string name = Path.GetFileNameWithoutExtension(sourcePath);
                     string newPath = targetPath + @"\" + name;
-                    Directory.CreateDirectory(newPath);
-                    string zipPath = newPath + @"\" + name + ".zip";
+                    CheckDirectory(newPath);
+                    string zipPath = newPath + "_壓縮檔" + @"\" + name + ".zip";
 
                     Thread thread = new Thread(t =>
                     {
@@ -369,9 +367,13 @@ namespace CompressTool
 
                 progressBar.Invoke(new MethodInvoker(delegate
                 {
-                    progressBar.Maximum = e.EntriesTotal;
-                    progressBar.Value = e.EntriesSaved + 1;
+                    //progressBar.Maximum = e.EntriesTotal;
+                    //progressBar.Value = e.EntriesSaved + 1;
+                    progressBar.Maximum = 100;
+                    progressBar.Value = (int)((e.BytesTransferred * 100) / e.TotalBytesToTransfer);
+                    status.Text = progressBar.Value.ToString();
                     progressBar.Update();
+                    
                 }));
         }
         //計算進度百分比
@@ -383,23 +385,26 @@ namespace CompressTool
                 {
                     progressBar.Maximum = 100;
                     progressBar.Value = (int)((e.BytesTransferred * 100) / e.TotalBytesToTransfer);
-
+                    status.Text = progressBar.Value.ToString();
                     progressBar.Update();
+                    
                 }));
         }
         #endregion
 
         //建立目錄
-        private static void CreateDirectory(string path)
+        private void CheckDirectory(string path)
         {
             if (!Directory.Exists(path))
             {
-                Directory.CreateDirectory(path);
+                Directory.CreateDirectory(path + "_壓縮檔");
             }
             else
             {
-                Directory.CreateDirectory(path+"1");
+                Directory.CreateDirectory(path + "_壓縮檔");
             }
+
+            target_address = path + "_壓縮檔";
         }
 
         //開啟寄信頁面EmailSender

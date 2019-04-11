@@ -56,6 +56,8 @@ namespace CompressTool
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.status = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -95,7 +97,7 @@ namespace CompressTool
             this.Compress.Location = new System.Drawing.Point(278, 426);
             this.Compress.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Compress.Name = "Compress";
-            this.Compress.Size = new System.Drawing.Size(82, 29);
+            this.Compress.Size = new System.Drawing.Size(82, 33);
             this.Compress.TabIndex = 14;
             this.Compress.Text = "壓縮";
             this.Compress.UseVisualStyleBackColor = true;
@@ -104,9 +106,9 @@ namespace CompressTool
             // btnMail
             // 
             this.btnMail.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnMail.Location = new System.Drawing.Point(254, 511);
+            this.btnMail.Location = new System.Drawing.Point(242, 519);
             this.btnMail.Name = "btnMail";
-            this.btnMail.Size = new System.Drawing.Size(129, 37);
+            this.btnMail.Size = new System.Drawing.Size(145, 29);
             this.btnMail.TabIndex = 15;
             this.btnMail.Text = "填寫信箱資料";
             this.btnMail.UseVisualStyleBackColor = true;
@@ -333,11 +335,32 @@ namespace CompressTool
             this.label6.TabIndex = 29;
             this.label6.Text = "分割大小 :";
             // 
+            // status
+            // 
+            this.status.AutoSize = true;
+            this.status.Location = new System.Drawing.Point(489, 411);
+            this.status.Name = "status";
+            this.status.Size = new System.Drawing.Size(21, 19);
+            this.status.TabIndex = 30;
+            this.status.Text = "   ";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.SystemColors.Control;
+            this.label8.Location = new System.Drawing.Point(539, 411);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(23, 19);
+            this.label8.TabIndex = 31;
+            this.label8.Text = "%";
+            // 
             // CompressTool
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(669, 560);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.status);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label5);
@@ -401,6 +424,8 @@ namespace CompressTool
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label status;
+        private System.Windows.Forms.Label label8;
     }
 }
 

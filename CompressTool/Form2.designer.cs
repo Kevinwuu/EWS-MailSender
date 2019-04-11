@@ -50,6 +50,7 @@
             this.txtSenderHoset = new System.Windows.Forms.TextBox();
             this.txtRecieverHost = new System.Windows.Forms.TextBox();
             this.btnOpenFolder = new System.Windows.Forms.Button();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
             // 
             // label1
@@ -157,7 +158,7 @@
             // btnsend
             // 
             this.btnsend.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnsend.Location = new System.Drawing.Point(470, 323);
+            this.btnsend.Location = new System.Drawing.Point(470, 363);
             this.btnsend.Name = "btnsend";
             this.btnsend.Size = new System.Drawing.Size(55, 25);
             this.btnsend.TabIndex = 13;
@@ -172,10 +173,10 @@
             // btnSelectFolder
             // 
             this.btnSelectFolder.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnSelectFolder.Location = new System.Drawing.Point(414, 183);
+            this.btnSelectFolder.Location = new System.Drawing.Point(389, 183);
             this.btnSelectFolder.Margin = new System.Windows.Forms.Padding(2);
             this.btnSelectFolder.Name = "btnSelectFolder";
-            this.btnSelectFolder.Size = new System.Drawing.Size(54, 27);
+            this.btnSelectFolder.Size = new System.Drawing.Size(64, 27);
             this.btnSelectFolder.TabIndex = 14;
             this.btnSelectFolder.Text = "選擇";
             this.btnSelectFolder.UseVisualStyleBackColor = true;
@@ -184,7 +185,7 @@
             // textFolder
             // 
             this.textFolder.Enabled = false;
-            this.textFolder.Font = new System.Drawing.Font("微軟正黑體", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.textFolder.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.textFolder.Location = new System.Drawing.Point(105, 156);
             this.textFolder.Margin = new System.Windows.Forms.Padding(2);
             this.textFolder.Multiline = true;
@@ -214,7 +215,7 @@
             // btnBack
             // 
             this.btnBack.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnBack.Location = new System.Drawing.Point(400, 323);
+            this.btnBack.Location = new System.Drawing.Point(389, 363);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(64, 25);
             this.btnBack.TabIndex = 16;
@@ -243,20 +244,28 @@
             // btnOpenFolder
             // 
             this.btnOpenFolder.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnOpenFolder.Location = new System.Drawing.Point(472, 183);
+            this.btnOpenFolder.Location = new System.Drawing.Point(470, 183);
             this.btnOpenFolder.Margin = new System.Windows.Forms.Padding(2);
             this.btnOpenFolder.Name = "btnOpenFolder";
-            this.btnOpenFolder.Size = new System.Drawing.Size(55, 27);
+            this.btnOpenFolder.Size = new System.Drawing.Size(57, 27);
             this.btnOpenFolder.TabIndex = 19;
             this.btnOpenFolder.Text = "開啟";
             this.btnOpenFolder.UseVisualStyleBackColor = true;
             this.btnOpenFolder.Click += new System.EventHandler(this.btnOpenFolder_Click);
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(103, 334);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(422, 23);
+            this.progressBar1.TabIndex = 20;
+            // 
             // EmailSender
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(566, 360);
+            this.ClientSize = new System.Drawing.Size(566, 401);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.btnOpenFolder);
             this.Controls.Add(this.txtRecieverHost);
             this.Controls.Add(this.txtSenderHoset);
@@ -308,6 +317,7 @@
         private System.Windows.Forms.TextBox txtSenderHoset;
         private System.Windows.Forms.TextBox txtRecieverHost;
         private System.Windows.Forms.Button btnOpenFolder;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }
 
