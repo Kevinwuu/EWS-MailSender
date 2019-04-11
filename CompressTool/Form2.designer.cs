@@ -49,6 +49,7 @@
             this.btnBack = new System.Windows.Forms.Button();
             this.txtSenderHoset = new System.Windows.Forms.TextBox();
             this.txtRecieverHost = new System.Windows.Forms.TextBox();
+            this.btnOpenFolder = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -85,17 +86,17 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label4.Location = new System.Drawing.Point(39, 147);
+            this.label4.Location = new System.Drawing.Point(39, 157);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(65, 20);
+            this.label4.Size = new System.Drawing.Size(49, 20);
             this.label4.TabIndex = 3;
-            this.label4.Text = "資料夾 :";
+            this.label4.Text = "附件 :";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label5.Location = new System.Drawing.Point(39, 179);
+            this.label5.Location = new System.Drawing.Point(39, 219);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(49, 20);
             this.label5.TabIndex = 4;
@@ -105,7 +106,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label6.Location = new System.Drawing.Point(39, 211);
+            this.label6.Location = new System.Drawing.Point(39, 251);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(49, 20);
             this.label6.TabIndex = 5;
@@ -125,7 +126,7 @@
             this.txtPass.Location = new System.Drawing.Point(174, 47);
             this.txtPass.Name = "txtPass";
             this.txtPass.PasswordChar = '*';
-            this.txtPass.Size = new System.Drawing.Size(322, 27);
+            this.txtPass.Size = new System.Drawing.Size(351, 27);
             this.txtPass.TabIndex = 7;
             // 
             // txtReciever
@@ -139,28 +140,28 @@
             // txtSubject
             // 
             this.txtSubject.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.txtSubject.Location = new System.Drawing.Point(174, 175);
+            this.txtSubject.Location = new System.Drawing.Point(105, 215);
             this.txtSubject.Name = "txtSubject";
-            this.txtSubject.Size = new System.Drawing.Size(322, 27);
+            this.txtSubject.Size = new System.Drawing.Size(420, 27);
             this.txtSubject.TabIndex = 10;
             // 
             // txtBody
             // 
             this.txtBody.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.txtBody.Location = new System.Drawing.Point(105, 213);
+            this.txtBody.Location = new System.Drawing.Point(105, 253);
             this.txtBody.Multiline = true;
             this.txtBody.Name = "txtBody";
-            this.txtBody.Size = new System.Drawing.Size(391, 61);
+            this.txtBody.Size = new System.Drawing.Size(420, 61);
             this.txtBody.TabIndex = 11;
             // 
             // btnsend
             // 
             this.btnsend.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnsend.Location = new System.Drawing.Point(440, 283);
+            this.btnsend.Location = new System.Drawing.Point(470, 323);
             this.btnsend.Name = "btnsend";
             this.btnsend.Size = new System.Drawing.Size(55, 25);
             this.btnsend.TabIndex = 13;
-            this.btnsend.Text = "寄出";
+            this.btnsend.Text = "送出";
             this.btnsend.UseVisualStyleBackColor = true;
             this.btnsend.Click += new System.EventHandler(this.btnsend_Click);
             // 
@@ -171,10 +172,10 @@
             // btnSelectFolder
             // 
             this.btnSelectFolder.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnSelectFolder.Location = new System.Drawing.Point(441, 142);
+            this.btnSelectFolder.Location = new System.Drawing.Point(414, 183);
             this.btnSelectFolder.Margin = new System.Windows.Forms.Padding(2);
             this.btnSelectFolder.Name = "btnSelectFolder";
-            this.btnSelectFolder.Size = new System.Drawing.Size(55, 27);
+            this.btnSelectFolder.Size = new System.Drawing.Size(54, 27);
             this.btnSelectFolder.TabIndex = 14;
             this.btnSelectFolder.Text = "選擇";
             this.btnSelectFolder.UseVisualStyleBackColor = true;
@@ -183,12 +184,13 @@
             // textFolder
             // 
             this.textFolder.Enabled = false;
-            this.textFolder.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.textFolder.Location = new System.Drawing.Point(174, 146);
+            this.textFolder.Font = new System.Drawing.Font("微軟正黑體", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.textFolder.Location = new System.Drawing.Point(105, 156);
             this.textFolder.Margin = new System.Windows.Forms.Padding(2);
             this.textFolder.Multiline = true;
             this.textFolder.Name = "textFolder";
-            this.textFolder.Size = new System.Drawing.Size(255, 23);
+            this.textFolder.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.textFolder.Size = new System.Drawing.Size(420, 23);
             this.textFolder.TabIndex = 15;
             // 
             // label7
@@ -206,13 +208,13 @@
             this.txtAccount.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.txtAccount.Location = new System.Drawing.Point(173, 15);
             this.txtAccount.Name = "txtAccount";
-            this.txtAccount.Size = new System.Drawing.Size(322, 27);
+            this.txtAccount.Size = new System.Drawing.Size(352, 27);
             this.txtAccount.TabIndex = 7;
             // 
             // btnBack
             // 
             this.btnBack.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnBack.Location = new System.Drawing.Point(365, 283);
+            this.btnBack.Location = new System.Drawing.Point(400, 323);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(64, 25);
             this.btnBack.TabIndex = 16;
@@ -225,7 +227,7 @@
             this.txtSenderHoset.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.txtSenderHoset.Location = new System.Drawing.Point(327, 79);
             this.txtSenderHoset.Name = "txtSenderHoset";
-            this.txtSenderHoset.Size = new System.Drawing.Size(169, 27);
+            this.txtSenderHoset.Size = new System.Drawing.Size(198, 27);
             this.txtSenderHoset.TabIndex = 18;
             this.txtSenderHoset.Text = "@systex.com";
             // 
@@ -234,15 +236,28 @@
             this.txtRecieverHost.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.txtRecieverHost.Location = new System.Drawing.Point(327, 111);
             this.txtRecieverHost.Name = "txtRecieverHost";
-            this.txtRecieverHost.Size = new System.Drawing.Size(168, 27);
+            this.txtRecieverHost.Size = new System.Drawing.Size(198, 27);
             this.txtRecieverHost.TabIndex = 18;
             this.txtRecieverHost.Text = "@systex.com";
+            // 
+            // btnOpenFolder
+            // 
+            this.btnOpenFolder.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.btnOpenFolder.Location = new System.Drawing.Point(472, 183);
+            this.btnOpenFolder.Margin = new System.Windows.Forms.Padding(2);
+            this.btnOpenFolder.Name = "btnOpenFolder";
+            this.btnOpenFolder.Size = new System.Drawing.Size(55, 27);
+            this.btnOpenFolder.TabIndex = 19;
+            this.btnOpenFolder.Text = "開啟";
+            this.btnOpenFolder.UseVisualStyleBackColor = true;
+            this.btnOpenFolder.Click += new System.EventHandler(this.btnOpenFolder_Click);
             // 
             // EmailSender
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(566, 354);
+            this.ClientSize = new System.Drawing.Size(566, 360);
+            this.Controls.Add(this.btnOpenFolder);
             this.Controls.Add(this.txtRecieverHost);
             this.Controls.Add(this.txtSenderHoset);
             this.Controls.Add(this.btnBack);
@@ -292,6 +307,7 @@
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.TextBox txtSenderHoset;
         private System.Windows.Forms.TextBox txtRecieverHost;
+        private System.Windows.Forms.Button btnOpenFolder;
     }
 }
 

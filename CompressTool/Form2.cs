@@ -22,6 +22,15 @@ namespace CompressTool
             
             InitializeComponent();
             txtAccount.Focus();
+
+        }
+
+        public string testString;
+
+
+        public void changeText(string str)
+        {
+            textFolder.Text = str;
         }
 
         private void btnsend_Click(object sender, EventArgs e)
@@ -68,16 +77,15 @@ namespace CompressTool
 
                     for(int i = 0; i < files.Length; i++)
                     {
-                        //message.Attachments.AddItemAttachment
+                        //AddAttachment
                         message.Attachments.AddFileAttachment(files[i]);
                         number = $"({i.ToString()})" ;
-                        message.Subject = subject + number;
-                        
+                        message.Subject = subject + number;                        
                         message.SendAndSaveCopy();
 
-                        message = null; // Free the memory
+                        // Free the memory and continue
+                        message = null; 
                         message = new EmailMessage(service);
-                        message.Subject = subject;
                         message.Body = body;
                         message.ToRecipients.Add(reciever);
                     }
@@ -96,7 +104,8 @@ namespace CompressTool
                 return;
             }
         }
-        
+
+
         private void btnSelectFolder_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog folder = new FolderBrowserDialog();
@@ -110,6 +119,18 @@ namespace CompressTool
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.Hide();
+        }
+
+        private void btnOpenFolder_Click(object sender, EventArgs e)
+        {
+            string myPath = @"";
+            myPath += textFolder.Text;
+            if (!string.IsNullOrEmpty(myPath))
+            {
+                System.Diagnostics.Process prc = new System.Diagnostics.Process();
+                prc.StartInfo.FileName = myPath;
+                prc.Start();
+            }
         }
     }
 }

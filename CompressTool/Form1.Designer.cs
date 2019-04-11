@@ -38,10 +38,7 @@ namespace CompressTool
             this.Compress = new System.Windows.Forms.Button();
             this.btnMail = new System.Windows.Forms.Button();
             this.cbData = new System.Windows.Forms.ComboBox();
-            this.targetAddr = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnSelectPath = new System.Windows.Forms.Button();
             this.btnSelectFolder = new System.Windows.Forms.Button();
             this.textFolder = new System.Windows.Forms.TextBox();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
@@ -52,11 +49,13 @@ namespace CompressTool
             this.btnSelectFile = new System.Windows.Forms.Button();
             this.textUnit = new System.Windows.Forms.Label();
             this.progressBar = new System.Windows.Forms.ProgressBar();
-            this.btnOpen = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.showPass = new System.Windows.Forms.CheckBox();
             this.txtCompressPass = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -70,7 +69,7 @@ namespace CompressTool
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label7.ForeColor = System.Drawing.Color.Red;
-            this.label7.Location = new System.Drawing.Point(36, 204);
+            this.label7.Location = new System.Drawing.Point(93, 328);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(221, 16);
@@ -85,15 +84,15 @@ namespace CompressTool
             this.cbData1.Items.AddRange(new object[] {
             "KB",
             "MB"});
-            this.cbData1.Location = new System.Drawing.Point(133, 177);
+            this.cbData1.Location = new System.Drawing.Point(96, 282);
             this.cbData1.Name = "cbData1";
-            this.cbData1.Size = new System.Drawing.Size(102, 24);
+            this.cbData1.Size = new System.Drawing.Size(119, 24);
             this.cbData1.TabIndex = 20;
             // 
             // Compress
             // 
             this.Compress.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.Compress.Location = new System.Drawing.Point(424, 332);
+            this.Compress.Location = new System.Drawing.Point(278, 426);
             this.Compress.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Compress.Name = "Compress";
             this.Compress.Size = new System.Drawing.Size(82, 29);
@@ -105,9 +104,9 @@ namespace CompressTool
             // btnMail
             // 
             this.btnMail.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnMail.Location = new System.Drawing.Point(197, 378);
+            this.btnMail.Location = new System.Drawing.Point(254, 511);
             this.btnMail.Name = "btnMail";
-            this.btnMail.Size = new System.Drawing.Size(129, 29);
+            this.btnMail.Size = new System.Drawing.Size(129, 37);
             this.btnMail.TabIndex = 15;
             this.btnMail.Text = "填寫信箱資料";
             this.btnMail.UseVisualStyleBackColor = true;
@@ -122,62 +121,29 @@ namespace CompressTool
             "100",
             "200",
             "400"});
-            this.cbData.Location = new System.Drawing.Point(133, 144);
+            this.cbData.Location = new System.Drawing.Point(95, 251);
             this.cbData.Name = "cbData";
-            this.cbData.Size = new System.Drawing.Size(103, 25);
+            this.cbData.Size = new System.Drawing.Size(120, 25);
             this.cbData.TabIndex = 16;
-            // 
-            // targetAddr
-            // 
-            this.targetAddr.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.targetAddr.Location = new System.Drawing.Point(133, 282);
-            this.targetAddr.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.targetAddr.Name = "targetAddr";
-            this.targetAddr.ReadOnly = true;
-            this.targetAddr.Size = new System.Drawing.Size(239, 25);
-            this.targetAddr.TabIndex = 13;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label3.Location = new System.Drawing.Point(35, 282);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(58, 21);
-            this.label3.TabIndex = 12;
-            this.label3.Text = "存檔至";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label2.Location = new System.Drawing.Point(35, 148);
+            this.label2.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label2.Location = new System.Drawing.Point(71, 174);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(90, 21);
+            this.label2.Size = new System.Drawing.Size(238, 24);
             this.label2.TabIndex = 11;
-            this.label2.Text = "分割檔大小";
-            // 
-            // btnSelectPath
-            // 
-            this.btnSelectPath.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnSelectPath.Location = new System.Drawing.Point(381, 282);
-            this.btnSelectPath.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnSelectPath.Name = "btnSelectPath";
-            this.btnSelectPath.Size = new System.Drawing.Size(36, 25);
-            this.btnSelectPath.TabIndex = 3;
-            this.btnSelectPath.Text = "...";
-            this.btnSelectPath.UseVisualStyleBackColor = true;
-            this.btnSelectPath.Click += new System.EventHandler(this.btnSelectPath_Click);
+            this.label2.Text = "Step2: 分割壓縮檔(非必要)";
             // 
             // btnSelectFolder
             // 
             this.btnSelectFolder.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnSelectFolder.Location = new System.Drawing.Point(471, 69);
+            this.btnSelectFolder.Location = new System.Drawing.Point(525, 98);
             this.btnSelectFolder.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSelectFolder.Name = "btnSelectFolder";
-            this.btnSelectFolder.Size = new System.Drawing.Size(36, 27);
+            this.btnSelectFolder.Size = new System.Drawing.Size(36, 25);
             this.btnSelectFolder.TabIndex = 4;
             this.btnSelectFolder.Text = "...";
             this.btnSelectFolder.UseVisualStyleBackColor = true;
@@ -186,7 +152,7 @@ namespace CompressTool
             // textFolder
             // 
             this.textFolder.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.textFolder.Location = new System.Drawing.Point(134, 69);
+            this.textFolder.Location = new System.Drawing.Point(189, 98);
             this.textFolder.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textFolder.Name = "textFolder";
             this.textFolder.ReadOnly = true;
@@ -196,12 +162,12 @@ namespace CompressTool
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.radioButton2.Location = new System.Drawing.Point(39, 71);
+            this.radioButton2.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.radioButton2.Location = new System.Drawing.Point(94, 100);
             this.radioButton2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radioButton2.Size = new System.Drawing.Size(76, 25);
+            this.radioButton2.Size = new System.Drawing.Size(74, 20);
             this.radioButton2.TabIndex = 6;
             this.radioButton2.Text = "資料夾";
             this.radioButton2.UseVisualStyleBackColor = true;
@@ -210,7 +176,7 @@ namespace CompressTool
             // 
             this.textFileSize.AutoSize = true;
             this.textFileSize.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.textFileSize.Location = new System.Drawing.Point(406, 112);
+            this.textFileSize.Location = new System.Drawing.Point(461, 141);
             this.textFileSize.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.textFileSize.Name = "textFileSize";
             this.textFileSize.Size = new System.Drawing.Size(63, 16);
@@ -222,7 +188,7 @@ namespace CompressTool
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label1.Location = new System.Drawing.Point(362, 109);
+            this.label1.Location = new System.Drawing.Point(417, 138);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(39, 19);
@@ -233,7 +199,7 @@ namespace CompressTool
             // textFile
             // 
             this.textFile.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.textFile.Location = new System.Drawing.Point(134, 31);
+            this.textFile.Location = new System.Drawing.Point(189, 60);
             this.textFile.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textFile.Name = "textFile";
             this.textFile.ReadOnly = true;
@@ -246,12 +212,12 @@ namespace CompressTool
             this.radioButton1.AutoSize = true;
             this.radioButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.radioButton1.Checked = true;
-            this.radioButton1.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.radioButton1.Location = new System.Drawing.Point(39, 34);
+            this.radioButton1.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.radioButton1.Location = new System.Drawing.Point(94, 63);
             this.radioButton1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radioButton1.Size = new System.Drawing.Size(76, 25);
+            this.radioButton1.Size = new System.Drawing.Size(75, 24);
             this.radioButton1.TabIndex = 5;
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "    檔案";
@@ -261,7 +227,7 @@ namespace CompressTool
             // btnSelectFile
             // 
             this.btnSelectFile.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnSelectFile.Location = new System.Drawing.Point(471, 32);
+            this.btnSelectFile.Location = new System.Drawing.Point(526, 61);
             this.btnSelectFile.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSelectFile.Name = "btnSelectFile";
             this.btnSelectFile.Size = new System.Drawing.Size(36, 27);
@@ -274,7 +240,7 @@ namespace CompressTool
             // 
             this.textUnit.AutoSize = true;
             this.textUnit.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.textUnit.Location = new System.Drawing.Point(479, 109);
+            this.textUnit.Location = new System.Drawing.Point(534, 138);
             this.textUnit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.textUnit.Name = "textUnit";
             this.textUnit.Size = new System.Drawing.Size(27, 19);
@@ -284,20 +250,10 @@ namespace CompressTool
             // 
             // progressBar
             // 
-            this.progressBar.Location = new System.Drawing.Point(39, 332);
+            this.progressBar.Location = new System.Drawing.Point(94, 379);
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(378, 29);
+            this.progressBar.Size = new System.Drawing.Size(473, 29);
             this.progressBar.TabIndex = 24;
-            // 
-            // btnOpen
-            // 
-            this.btnOpen.Location = new System.Drawing.Point(424, 282);
-            this.btnOpen.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnOpen.Name = "btnOpen";
-            this.btnOpen.Size = new System.Drawing.Size(83, 28);
-            this.btnOpen.TabIndex = 0;
-            this.btnOpen.Text = "開啟";
-            this.btnOpen.Click += new System.EventHandler(this.btnOpen_Click_1);
             // 
             // groupBox1
             // 
@@ -305,7 +261,7 @@ namespace CompressTool
             this.groupBox1.Controls.Add(this.txtCompressPass);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.groupBox1.Location = new System.Drawing.Point(282, 131);
+            this.groupBox1.Location = new System.Drawing.Point(342, 216);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -340,32 +296,62 @@ namespace CompressTool
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label4.Location = new System.Drawing.Point(22, 38);
+            this.label4.Location = new System.Drawing.Point(22, 35);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(69, 19);
+            this.label4.Size = new System.Drawing.Size(76, 19);
             this.label4.TabIndex = 0;
-            this.label4.Text = "輸入密碼";
+            this.label4.Text = "輸入密碼 :";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label5.Location = new System.Drawing.Point(71, 13);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(153, 24);
+            this.label5.TabIndex = 27;
+            this.label5.Text = "Step1 : 選取來源";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label3.Location = new System.Drawing.Point(71, 469);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(148, 24);
+            this.label3.TabIndex = 28;
+            this.label3.Text = "Step3: 開始寄信";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label6.Location = new System.Drawing.Point(92, 221);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(76, 19);
+            this.label6.TabIndex = 29;
+            this.label6.Text = "分割大小 :";
             // 
             // CompressTool
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(542, 437);
+            this.ClientSize = new System.Drawing.Size(669, 560);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.btnOpen);
             this.Controls.Add(this.progressBar);
             this.Controls.Add(this.textUnit);
             this.Controls.Add(this.textFileSize);
             this.Controls.Add(this.btnMail);
-            this.Controls.Add(this.targetAddr);
             this.Controls.Add(this.Compress);
-            this.Controls.Add(this.btnSelectPath);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnSelectFile);
             this.Controls.Add(this.cbData);
             this.Controls.Add(this.cbData1);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textFile);
             this.Controls.Add(this.textFolder);
@@ -376,6 +362,7 @@ namespace CompressTool
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "CompressTool";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.CompressTool_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -396,10 +383,7 @@ namespace CompressTool
         private System.Windows.Forms.Button Compress;
         private System.Windows.Forms.Button btnMail;
         private System.Windows.Forms.ComboBox cbData;
-        private System.Windows.Forms.TextBox targetAddr;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnSelectPath;
         private System.Windows.Forms.Button btnSelectFolder;
         private System.Windows.Forms.TextBox textFolder;
         private System.Windows.Forms.RadioButton radioButton2;
@@ -410,11 +394,13 @@ namespace CompressTool
         private System.Windows.Forms.Button btnSelectFile;
         private System.Windows.Forms.Label textUnit;
         private System.Windows.Forms.ProgressBar progressBar;
-        private System.Windows.Forms.Button btnOpen;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox showPass;
         private System.Windows.Forms.TextBox txtCompressPass;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label6;
     }
 }
 
