@@ -51,6 +51,7 @@
             this.txtRecieverHost = new System.Windows.Forms.TextBox();
             this.btnOpenFolder = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.txtSendStatus = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -120,6 +121,7 @@
             this.txtSender.Name = "txtSender";
             this.txtSender.Size = new System.Drawing.Size(148, 27);
             this.txtSender.TabIndex = 6;
+            this.txtSender.Text = "kevin-wu";
             // 
             // txtPass
             // 
@@ -129,6 +131,7 @@
             this.txtPass.PasswordChar = '*';
             this.txtPass.Size = new System.Drawing.Size(351, 27);
             this.txtPass.TabIndex = 7;
+            this.txtPass.Text = "systex1995/2/2";
             // 
             // txtReciever
             // 
@@ -137,6 +140,7 @@
             this.txtReciever.Name = "txtReciever";
             this.txtReciever.Size = new System.Drawing.Size(147, 27);
             this.txtReciever.TabIndex = 8;
+            this.txtReciever.Text = "kevin84020202";
             // 
             // txtSubject
             // 
@@ -154,6 +158,7 @@
             this.txtBody.Name = "txtBody";
             this.txtBody.Size = new System.Drawing.Size(420, 61);
             this.txtBody.TabIndex = 11;
+            this.txtBody.Text = "yoyoyo";
             // 
             // btnsend
             // 
@@ -178,7 +183,7 @@
             this.btnSelectFolder.Name = "btnSelectFolder";
             this.btnSelectFolder.Size = new System.Drawing.Size(64, 27);
             this.btnSelectFolder.TabIndex = 14;
-            this.btnSelectFolder.Text = "選擇";
+            this.btnSelectFolder.Text = "選取";
             this.btnSelectFolder.UseVisualStyleBackColor = true;
             this.btnSelectFolder.Click += new System.EventHandler(this.btnSelectFolder_Click);
             // 
@@ -211,11 +216,12 @@
             this.txtAccount.Name = "txtAccount";
             this.txtAccount.Size = new System.Drawing.Size(352, 27);
             this.txtAccount.TabIndex = 7;
+            this.txtAccount.Text = "1800476";
             // 
             // btnBack
             // 
             this.btnBack.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnBack.Location = new System.Drawing.Point(389, 363);
+            this.btnBack.Location = new System.Drawing.Point(391, 363);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(64, 25);
             this.btnBack.TabIndex = 16;
@@ -239,7 +245,7 @@
             this.txtRecieverHost.Name = "txtRecieverHost";
             this.txtRecieverHost.Size = new System.Drawing.Size(198, 27);
             this.txtRecieverHost.TabIndex = 18;
-            this.txtRecieverHost.Text = "@systex.com";
+            this.txtRecieverHost.Text = "@gmail.com";
             // 
             // btnOpenFolder
             // 
@@ -249,22 +255,34 @@
             this.btnOpenFolder.Name = "btnOpenFolder";
             this.btnOpenFolder.Size = new System.Drawing.Size(57, 27);
             this.btnOpenFolder.TabIndex = 19;
-            this.btnOpenFolder.Text = "開啟";
+            this.btnOpenFolder.Text = "檢視";
             this.btnOpenFolder.UseVisualStyleBackColor = true;
             this.btnOpenFolder.Click += new System.EventHandler(this.btnOpenFolder_Click);
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(103, 334);
+            this.progressBar1.Location = new System.Drawing.Point(103, 409);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(422, 23);
             this.progressBar1.TabIndex = 20;
+            this.progressBar1.Visible = false;
+            // 
+            // txtSendStatus
+            // 
+            this.txtSendStatus.AutoSize = true;
+            this.txtSendStatus.Font = new System.Drawing.Font("新細明體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.txtSendStatus.Location = new System.Drawing.Point(270, 327);
+            this.txtSendStatus.Name = "txtSendStatus";
+            this.txtSendStatus.Size = new System.Drawing.Size(10, 13);
+            this.txtSendStatus.TabIndex = 21;
+            this.txtSendStatus.Text = " ";
             // 
             // EmailSender
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(566, 401);
+            this.ClientSize = new System.Drawing.Size(566, 444);
+            this.Controls.Add(this.txtSendStatus);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.btnOpenFolder);
             this.Controls.Add(this.txtRecieverHost);
@@ -318,6 +336,7 @@
         private System.Windows.Forms.TextBox txtRecieverHost;
         private System.Windows.Forms.Button btnOpenFolder;
         private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Label txtSendStatus;
     }
 }
 

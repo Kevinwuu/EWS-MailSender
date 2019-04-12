@@ -58,6 +58,9 @@ namespace CompressTool
             this.label6 = new System.Windows.Forms.Label();
             this.status = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.txtLoading = new System.Windows.Forms.Label();
+            this.btnPause = new System.Windows.Forms.Button();
+            this.btnResume = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -94,7 +97,7 @@ namespace CompressTool
             // Compress
             // 
             this.Compress.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.Compress.Location = new System.Drawing.Point(278, 426);
+            this.Compress.Location = new System.Drawing.Point(278, 433);
             this.Compress.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Compress.Name = "Compress";
             this.Compress.Size = new System.Drawing.Size(82, 33);
@@ -354,11 +357,45 @@ namespace CompressTool
             this.label8.TabIndex = 31;
             this.label8.Text = "%";
             // 
+            // txtLoading
+            // 
+            this.txtLoading.AutoSize = true;
+            this.txtLoading.Location = new System.Drawing.Point(296, 357);
+            this.txtLoading.Name = "txtLoading";
+            this.txtLoading.Size = new System.Drawing.Size(39, 19);
+            this.txtLoading.TabIndex = 32;
+            this.txtLoading.Text = "wait";
+            // 
+            // btnPause
+            // 
+            this.btnPause.Location = new System.Drawing.Point(403, 433);
+            this.btnPause.Name = "btnPause";
+            this.btnPause.Size = new System.Drawing.Size(80, 33);
+            this.btnPause.TabIndex = 33;
+            this.btnPause.Text = "Pause";
+            this.btnPause.UseVisualStyleBackColor = true;
+            this.btnPause.Visible = false;
+            this.btnPause.Click += new System.EventHandler(this.btnPause_Click);
+            // 
+            // btnResume
+            // 
+            this.btnResume.Location = new System.Drawing.Point(493, 433);
+            this.btnResume.Name = "btnResume";
+            this.btnResume.Size = new System.Drawing.Size(80, 33);
+            this.btnResume.TabIndex = 33;
+            this.btnResume.Text = "Resume";
+            this.btnResume.UseVisualStyleBackColor = true;
+            this.btnResume.Visible = false;
+            this.btnResume.Click += new System.EventHandler(this.btnResume_Click);
+            // 
             // CompressTool
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(669, 560);
+            this.Controls.Add(this.btnResume);
+            this.Controls.Add(this.btnPause);
+            this.Controls.Add(this.txtLoading);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.status);
             this.Controls.Add(this.label6);
@@ -426,6 +463,9 @@ namespace CompressTool
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label status;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label txtLoading;
+        private System.Windows.Forms.Button btnPause;
+        private System.Windows.Forms.Button btnResume;
     }
 }
 

@@ -1,19 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Ionic.Zip;
+using System;
+using System.Collections;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
 //新增
 using System.IO;
-using System.Net.Mail;
-using Ionic.Zip;
-using System.Collections;
+using System.Text;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace CompressTool
 {
@@ -22,6 +15,9 @@ namespace CompressTool
 
         public EmailSender email = new EmailSender();
         public string target_address;
+        ManualResetEvent _shutdownEvent = new ManualResetEvent(false);
+        ManualResetEvent _pauseEvent = new ManualResetEvent(true);
+        public delegate void MyInvoke(string str);
 
         // 頁面初始化
         public CompressTool()
@@ -32,9 +28,10 @@ namespace CompressTool
             txtCompressPass.UseSystemPasswordChar = true;
             cbData.Text = "";
             cbData1.Text = "KB";
+
         }
 
-        //操控email頁面
+        //開啟寄信頁面
         private void showEmail()
         {
             email.changeText(target_address);
@@ -198,7 +195,7 @@ namespace CompressTool
         }
 
 
-        //壓縮點擊後確認資料
+        //確認資料後開始壓縮
         private void Compress_Click(object sender, EventArgs e)
         {
 
@@ -255,6 +252,8 @@ namespace CompressTool
             int sepSize = 0;
             int maxsize = 2 *1024 * 1024 * 1023;
             int minsize = 65536;
+            btnPause.Visible = true;
+            btnResume.Visible = true;
 
             //判斷是否切割，單位為byte
             if (isSeperate)
@@ -292,17 +291,24 @@ namespace CompressTool
             }
             try
             {
-                //判斷壓縮檔案或資料夾
+
+
+                //判斷資料來源&開始壓縮
                 if (type == "Folder")
                 {
                     string name = Path.GetFileName(sourcePath);
                     string newPath = targetPath + @"\" + name;
                     CheckDirectory(newPath);
                     string zipPath = newPath + "_壓縮檔" + @"\" + name + ".zip";
+
                     Thread thread = new Thread(t =>
                     {
+                        MyInvoke mi = new MyInvoke(UpdateStatus);
+                        this.BeginInvoke(mi, new Object[] { "OVER" });
                         using (ZipFile zip = new ZipFile(Encoding.UTF8))
                         {
+
+
                             if (isSeperate)
                             {
                                 zip.MaxOutputSegmentSize = sepSize;
@@ -315,10 +321,16 @@ namespace CompressTool
                             zip.SaveProgress += Zip_saveProgress;
                             zip.Save(zipPath);
                             MessageBox.Show("Success!", "Message");
+                            //txtLoading.Text = " ";
                         }
                     });
+                    //_pauseEvent = new ManualResetEvent(true);
                     thread.IsBackground = true;
                     thread.Start();
+                    txtLoading.Text = "Loading";
+
+                    //thread.Join();
+                    //txtLoading.Text = "over";
                 }
 
                 if (type == "File")
@@ -328,10 +340,16 @@ namespace CompressTool
                     CheckDirectory(newPath);
                     string zipPath = newPath + "_壓縮檔" + @"\" + name + ".zip";
 
+
                     Thread thread = new Thread(t =>
                     {
+                        MyInvoke mi = new MyInvoke(UpdateStatus);
+                        this.BeginInvoke(mi, new Object[] { "OVER" });
                         using (ZipFile zip = new ZipFile(Encoding.UTF8))
                         {
+                           
+                            
+
                             if (isSeperate)
                             {
                                 zip.MaxOutputSegmentSize = sepSize;
@@ -344,11 +362,25 @@ namespace CompressTool
                             zip.AddFile(sourcePath, string.Empty);
                             zip.SaveProgress += Zip_saveFileProgress;
                             zip.Save(zipPath);
+                            //txtLoading.Invoke(new MethodInvoker(delegate {
+                            //    txtLoading.Text = " ";
+                            //}));
                             MessageBox.Show("Success!", "Message");
+
                         }
                     });
+
+                    //thread1 = new Thread(new ThreadStart(Sample));
                     thread.IsBackground = true;
                     thread.Start();
+                    txtLoading.Text = "Loading";
+                    //while (thread.IsAlive)
+                    //{
+                    //    txtLoading.Text = "Loading";
+                    //}
+
+                    //thread.Join();
+                    //txtLoading.Text = "over";
                 }
             }
             catch (Exception e)
@@ -359,22 +391,31 @@ namespace CompressTool
         }
 
 
-
         #region 進度條設定
         public void Zip_saveProgress(object sender, SaveProgressEventArgs e)
         {
+
+
+
+
             if (e.EventType == ZipProgressEventType.Saving_BeforeWriteEntry)
+
 
                 progressBar.Invoke(new MethodInvoker(delegate
                 {
+
+                    // 初始化為true, stop時轉為false
+                    _pauseEvent.WaitOne(Timeout.Infinite);
+
                     //progressBar.Maximum = e.EntriesTotal;
                     //progressBar.Value = e.EntriesSaved + 1;
                     progressBar.Maximum = 100;
-                    progressBar.Value = (int)((e.BytesTransferred * 100) / e.TotalBytesToTransfer);
+                    progressBar.Value = (int)((e.EntriesSaved + 1)*100 / e.EntriesTotal);
                     status.Text = progressBar.Value.ToString();
                     progressBar.Update();
                     
                 }));
+            //txtLoading.Text = " ";
         }
         //計算進度百分比
         public void Zip_saveFileProgress(object sender, SaveProgressEventArgs e)
@@ -389,6 +430,7 @@ namespace CompressTool
                     progressBar.Update();
                     
                 }));
+            //txtLoading.Text = " ";
         }
         #endregion
 
@@ -430,6 +472,36 @@ namespace CompressTool
         private void CompressTool_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnPause_Click(object sender, EventArgs e)
+        {
+            _pauseEvent.Reset();
+        }
+
+        private void btnResume_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Hello", "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            _pauseEvent.Set();
+        }
+
+
+        //public void Stop()
+        //{
+        //    // Signal the shutdown event
+        //    _shutdownEvent.Set();
+        //    Console.WriteLine("Thread Stopped ");
+
+        //    // Make sure to resume any paused threads
+        //    _pauseEvent.Set();
+
+        //    // Wait for the thread to exit
+        //    _thread.Join();
+        //}
+
+        public void UpdateStatus(string param1)
+        {
+            this.txtLoading.Text = param1;
         }
     }
 }
