@@ -356,28 +356,6 @@ namespace CompressTool
             this.label8.TabIndex = 31;
             this.label8.Text = "%";
             // 
-            // btnPause
-            // 
-            this.btnPause.Location = new System.Drawing.Point(403, 433);
-            this.btnPause.Name = "btnPause";
-            this.btnPause.Size = new System.Drawing.Size(80, 33);
-            this.btnPause.TabIndex = 33;
-            this.btnPause.Text = "Pause";
-            this.btnPause.UseVisualStyleBackColor = true;
-            this.btnPause.Visible = false;
-            this.btnPause.Click += new System.EventHandler(this.btnPause_Click);
-            // 
-            // btnResume
-            // 
-            this.btnResume.Location = new System.Drawing.Point(493, 433);
-            this.btnResume.Name = "btnResume";
-            this.btnResume.Size = new System.Drawing.Size(80, 33);
-            this.btnResume.TabIndex = 33;
-            this.btnResume.Text = "Resume";
-            this.btnResume.UseVisualStyleBackColor = true;
-            this.btnResume.Visible = false;
-            this.btnResume.Click += new System.EventHandler(this.btnResume_Click);
-            // 
             // CompressTool
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);

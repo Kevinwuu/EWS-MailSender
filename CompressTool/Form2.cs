@@ -26,22 +26,23 @@ namespace CompressTool
             textFolder.Text = str;
         }
 
+        #region 送出信件
         private void btnsend_Click(object sender, EventArgs e)
         {
+            txtFinished.Text = "";
+            txtSendStatus.Text = "Loading...";
+            Cursor.Current = Cursors.WaitCursor;
+
+
+            string user = txtAccount.Text;
+            string pass = txtPass.Text;
+            string senderEmail = txtSender.Text + txtSenderHoset.Text;
+            string reciever = txtReciever.Text + txtRecieverHost.Text;
+            string body = txtBody.Text;
+            string subject = txtSubject.Text;
 
             try 
             {
-                //progressBar1.Visible = true;
-
-
-                Cursor.Current = Cursors.WaitCursor;
-                string user = txtAccount.Text;
-                string pass = txtPass.Text;
-                string senderEmail = txtSender.Text + txtSenderHoset.Text;
-                string reciever = txtReciever.Text + txtRecieverHost.Text;
-                string body = txtBody.Text;
-                string subject = txtSubject.Text;
-
                 // Setting Credential 
                 ExchangeService service = new ExchangeService(ExchangeVersion.Exchange2010_SP1);
                 service.Credentials = new NetworkCredential(user, pass);
@@ -65,17 +66,10 @@ namespace CompressTool
                     }
                 }
 
-
-
-
-                //Thread thread = new Thread(new ThreadStart(addAttachment));
-                //thread.Start();
-
-                // 是否有附加檔案 AddAttachment
+                // 判斷是否有附加檔案
                 if (textFolder.Text != "")
                 {
                     string[] files = Directory.GetFiles(textFolder.Text, "*");
-                    string number = "";
 
                     for (int i = 0; i < files.Length; i++)
                     {
@@ -83,23 +77,14 @@ namespace CompressTool
                         message.Attachments.AddFileAttachment(files[i]);
 
                         // 改變主旨編號
-                        number = $"({i.ToString()})";
-                        message.Subject = subject + number;
+                        message.Subject = subject + $"({i+1})";
                         this.Refresh();
 
-
                         message.SendAndSaveCopy();
-
-                        txtSendStatus.Text = $"{i + 1}/{files.Length}已傳送";
-                        //Thread thread = new Thread(new ThreadStart(DoWor k));
-                        //thread.Start();
-                        //MyInvoke mi = new MyInvoke(UpdateSendStatus);
-                        //this.BeginInvoke(mi, new Object[] { i + 1, files.Length });
-
+                        UpdateSendStatus(i, files.Length);
 
                         // Free the memory and continue
                         message = null;
-
                         message = new EmailMessage(service);
                         message.Body = body;
                         message.ToRecipients.Add(reciever);
@@ -109,6 +94,7 @@ namespace CompressTool
                 {
                     message.SendAndSaveCopy();
                 }
+                txtFinished.Text = "傳送完畢";
                 MessageBox.Show("已寄出!");
                 Cursor.Current = Cursors.Default;
                 // Free the memory
@@ -120,66 +106,7 @@ namespace CompressTool
                 return;
             }
         }
-        public void addAttachment()
-        {
-            string user = txtAccount.Text;
-            string pass = txtPass.Text;
-            string senderEmail = txtSender.Text + txtSenderHoset.Text;
-            string reciever = txtReciever.Text + txtRecieverHost.Text;
-            string body = txtBody.Text;
-            string subject = txtSubject.Text;
-
-            // Setting Credential 
-            ExchangeService service = new ExchangeService(ExchangeVersion.Exchange2010_SP1);
-            service.Credentials = new NetworkCredential(user, pass);
-            service.AutodiscoverUrl(senderEmail);
-
-            EmailMessage message = new EmailMessage(service);
-
-            // 加入屬性
-            message.Subject = subject;
-            message.Body = body;
-            message.ToRecipients.Add(reciever);
-
-
-
-            // 是否有附加檔案 AddAttachment
-            if (textFolder.Text != "")
-            {
-                string[] files = Directory.GetFiles(textFolder.Text, "*");
-                string number = "";
-
-                for (int i = 0; i < files.Length; i++)
-                {
-
-                    message.Attachments.AddFileAttachment(files[i]);
-
-                    // 改變主旨編號
-                    number = $"({i.ToString()})";
-                    message.Subject = subject + number;
-                    message.SendAndSaveCopy();
-
-                    //MyInvoke mi = new MyInvoke(UpdateSendStatus);
-                    //this.BeginInvoke(mi, new Object[] { i + 1, files.Length });
-                    txtSendStatus.Text = $"已傳送{i+1}/{files.Length}封郵件";
-                    this.Refresh();
-
-                    // Free the memory and continue
-                    message = null;
-                    message = new EmailMessage(service);
-                    message.Body = body;
-                    message.ToRecipients.Add(reciever);
-                }
-            }
-            else
-            {
-                message.SendAndSaveCopy();
-            }
-            MessageBox.Show("已寄出!");
-            Cursor.Current = Cursors.Default;
-            // Free the memory
-            message = null;
-        }
+        #endregion
 
         private void btnSelectFolder_Click(object sender, EventArgs e)
         {
@@ -196,6 +123,7 @@ namespace CompressTool
             this.Hide();
         }
 
+        // 檢視附件資料夾
         private void btnOpenFolder_Click(object sender, EventArgs e)
         {
             string myPath = @"";
@@ -208,9 +136,10 @@ namespace CompressTool
             }
         }
 
-        public void UpdateSendStatus(string x, string total)
+        public void UpdateSendStatus(int x, int total)
         {
-            txtSendStatus.Text = $"已傳送{x + 1}/{total}封郵件";
+            txtSendStatus.Text = $"已傳送 {x + 1} / {total} 封郵件";
         }
+
     }
 }

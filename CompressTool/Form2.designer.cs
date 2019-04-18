@@ -50,8 +50,9 @@
             this.txtSenderHoset = new System.Windows.Forms.TextBox();
             this.txtRecieverHost = new System.Windows.Forms.TextBox();
             this.btnOpenFolder = new System.Windows.Forms.Button();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.txtSendStatus = new System.Windows.Forms.Label();
+            this.txtFinished = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -259,31 +260,46 @@
             this.btnOpenFolder.UseVisualStyleBackColor = true;
             this.btnOpenFolder.Click += new System.EventHandler(this.btnOpenFolder_Click);
             // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(103, 409);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(422, 23);
-            this.progressBar1.TabIndex = 20;
-            this.progressBar1.Visible = false;
-            // 
             // txtSendStatus
             // 
+            this.txtSendStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSendStatus.AutoSize = true;
             this.txtSendStatus.Font = new System.Drawing.Font("新細明體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.txtSendStatus.Location = new System.Drawing.Point(270, 327);
             this.txtSendStatus.Name = "txtSendStatus";
-            this.txtSendStatus.Size = new System.Drawing.Size(10, 13);
+            this.txtSendStatus.Size = new System.Drawing.Size(140, 13);
             this.txtSendStatus.TabIndex = 21;
-            this.txtSendStatus.Text = " ";
+            this.txtSendStatus.Text = "325253253以傳送 4 / 4 封";
+            // 
+            // txtFinished
+            // 
+            this.txtFinished.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFinished.AutoSize = true;
+            this.txtFinished.Font = new System.Drawing.Font("新細明體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.txtFinished.Location = new System.Drawing.Point(272, 351);
+            this.txtFinished.Name = "txtFinished";
+            this.txtFinished.Size = new System.Drawing.Size(49, 13);
+            this.txtFinished.TabIndex = 21;
+            this.txtFinished.Text = "1111111";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.Color.Brown;
+            this.label8.Location = new System.Drawing.Point(143, 183);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(212, 12);
+            this.label8.TabIndex = 22;
+            this.label8.Text = "請選擇只包含壓縮(分割)檔的的資料夾 !";
             // 
             // EmailSender
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(566, 444);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.txtFinished);
             this.Controls.Add(this.txtSendStatus);
-            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.btnOpenFolder);
             this.Controls.Add(this.txtRecieverHost);
             this.Controls.Add(this.txtSenderHoset);
@@ -335,8 +351,9 @@
         private System.Windows.Forms.TextBox txtSenderHoset;
         private System.Windows.Forms.TextBox txtRecieverHost;
         private System.Windows.Forms.Button btnOpenFolder;
-        private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label txtSendStatus;
+        private System.Windows.Forms.Label txtFinished;
+        private System.Windows.Forms.Label label8;
     }
 }
 

@@ -194,7 +194,6 @@ namespace CompressTool
             }
         }
 
-
         //確認資料後開始壓縮
         private void Compress_Click(object sender, EventArgs e)
         {
@@ -202,18 +201,14 @@ namespace CompressTool
             string sourceFilePath = textFile.Text;
             string sourceFolderPath = textFolder.Text;
             string password = txtCompressPass.Text;
-
             bool hasFile = !string.IsNullOrEmpty(sourceFilePath);
             bool hasFolder = !string.IsNullOrEmpty(sourceFolderPath);
-
-
 
             //判斷是否有空欄位
             if (radioButton1.Checked)
             {
                 string targetPath = Path.GetDirectoryName(sourceFilePath);
                 string name = Path.GetFileNameWithoutExtension(sourceFilePath);
-                //target_address = targetPath + @"\" + name;
                 if (!hasFile)
                 {
                     MessageBox.Show("請選擇來源路徑.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -228,7 +223,6 @@ namespace CompressTool
             else
             {
                 string targetPath = Path.GetDirectoryName(sourceFolderPath);
-                //target_address = sourceFolderPath;
                 if (!hasFolder)
                 {
                     MessageBox.Show("請選擇來源路徑.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -252,8 +246,6 @@ namespace CompressTool
             int sepSize = 0;
             int maxsize = 2 *1024 * 1024 * 1023;
             int minsize = 65536;
-            //btnPause.Visible = true;
-            //btnResume.Visible = true;
 
             //判斷是否切割，單位為byte
             if (isSeperate)
@@ -270,7 +262,6 @@ namespace CompressTool
                     return;
                 }
 
-
                 if (cbData1.Text == "KB")
                 {
                     sepSize = size * 1024;
@@ -279,7 +270,6 @@ namespace CompressTool
                 {
                     sepSize = size * 1024 * 1024;
                 }
-
 
                 //分片大小只接受63KB~2GB
                 if (sepSize > maxsize || sepSize < minsize)
@@ -291,8 +281,6 @@ namespace CompressTool
             }
             try
             {
-
-
                 //判斷資料來源&開始壓縮
                 if (type == "Folder")
                 {
@@ -303,12 +291,8 @@ namespace CompressTool
 
                     Thread thread = new Thread(t =>
                     {
-                        MyInvoke mi = new MyInvoke(UpdateStatus);
-                        this.BeginInvoke(mi, new Object[] { "OVER" });
                         using (ZipFile zip = new ZipFile(Encoding.UTF8))
                         {
-
-
                             if (isSeperate)
                             {
                                 zip.MaxOutputSegmentSize = sepSize;
@@ -321,12 +305,10 @@ namespace CompressTool
                             zip.SaveProgress += Zip_saveProgress;
                             zip.Save(zipPath);
                             MessageBox.Show("Success!", "Message");
-                            //txtLoading.Text = " ";
                         }
                     });
                     thread.IsBackground = true;
                     thread.Start();
-                    //txtLoading.Text = "Loading";
                 }
 
                 if (type == "File")
@@ -336,16 +318,10 @@ namespace CompressTool
                     CheckDirectory(newPath);
                     string zipPath = newPath + "_壓縮檔" + @"\" + name + ".zip";
 
-
                     Thread thread = new Thread(t =>
                     {
-                        //MyInvoke mi = new MyInvoke(UpdateStatus);
-                        //this.BeginInvoke(mi, new Object[] { "OVER" });
                         using (ZipFile zip = new ZipFile(Encoding.UTF8))
-                        {
-                           
-                            
-
+                        {                                                    
                             if (isSeperate)
                             {
                                 zip.MaxOutputSegmentSize = sepSize;
@@ -354,24 +330,14 @@ namespace CompressTool
                             {
                                 zip.Password = password;
                             }
-
                             zip.AddFile(sourcePath, string.Empty);
                             zip.SaveProgress += Zip_saveFileProgress;
-
-                            //zip.UpdateFile(zipPath);
-
-
                             zip.Save(zipPath);
-
-
-
                             MessageBox.Show("Success!", "Message");
                         }
                     });
-
                     thread.IsBackground = true;
                     thread.Start();
-                    //txtLoading.Text = "Loading";
                 }
             }
             catch (Exception e)
@@ -413,8 +379,7 @@ namespace CompressTool
                     progressBar.Maximum = 100;
                     progressBar.Value = (int)((e.BytesTransferred * 100) / e.TotalBytesToTransfer);
                     status.Text = progressBar.Value.ToString();
-                    progressBar.Update();
-                    
+                    progressBar.Update();                   
                 }));
         }
         #endregion
@@ -430,7 +395,6 @@ namespace CompressTool
                 di.Delete(true);
             }                     
             Directory.CreateDirectory(newDir);
-
             target_address = newDir;
         }
 
@@ -472,35 +436,5 @@ namespace CompressTool
             }
         }
 
-
-        private void btnPause_Click(object sender, EventArgs e)
-        {
-            //    _pauseEvent.Reset();
-        }
-
-        private void btnResume_Click(object sender, EventArgs e)
-        {
-            //    MessageBox.Show("Hello", "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    _pauseEvent.Set();
-        }
-
-
-        public void Stop()
-        {
-            //    // Signal the shutdown event
-            //    _shutdownEvent.Set();
-            //    Console.WriteLine("Thread Stopped ");
-
-            //    // Make sure to resume any paused threads
-            //    _pauseEvent.Set();
-
-            //    // Wait for the thread to exit
-            //    _thread.Join();
-        }
-
-    public void UpdateStatus(string param1)
-        {
-            //this.txtLoading.Text = param1;
-        }
     }
 }
