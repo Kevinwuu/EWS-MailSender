@@ -58,7 +58,6 @@ namespace CompressTool
             this.label6 = new System.Windows.Forms.Label();
             this.status = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.txtLoading = new System.Windows.Forms.Label();
             this.btnPause = new System.Windows.Forms.Button();
             this.btnResume = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
@@ -357,15 +356,6 @@ namespace CompressTool
             this.label8.TabIndex = 31;
             this.label8.Text = "%";
             // 
-            // txtLoading
-            // 
-            this.txtLoading.AutoSize = true;
-            this.txtLoading.Location = new System.Drawing.Point(296, 357);
-            this.txtLoading.Name = "txtLoading";
-            this.txtLoading.Size = new System.Drawing.Size(39, 19);
-            this.txtLoading.TabIndex = 32;
-            this.txtLoading.Text = "wait";
-            // 
             // btnPause
             // 
             this.btnPause.Location = new System.Drawing.Point(403, 433);
@@ -395,7 +385,6 @@ namespace CompressTool
             this.ClientSize = new System.Drawing.Size(669, 560);
             this.Controls.Add(this.btnResume);
             this.Controls.Add(this.btnPause);
-            this.Controls.Add(this.txtLoading);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.status);
             this.Controls.Add(this.label6);
@@ -422,7 +411,6 @@ namespace CompressTool
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "CompressTool";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.CompressTool_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -463,7 +451,6 @@ namespace CompressTool
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label status;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label txtLoading;
         private System.Windows.Forms.Button btnPause;
         private System.Windows.Forms.Button btnResume;
     }

@@ -252,8 +252,8 @@ namespace CompressTool
             int sepSize = 0;
             int maxsize = 2 *1024 * 1024 * 1023;
             int minsize = 65536;
-            btnPause.Visible = true;
-            btnResume.Visible = true;
+            //btnPause.Visible = true;
+            //btnResume.Visible = true;
 
             //判斷是否切割，單位為byte
             if (isSeperate)
@@ -324,13 +324,9 @@ namespace CompressTool
                             //txtLoading.Text = " ";
                         }
                     });
-                    //_pauseEvent = new ManualResetEvent(true);
                     thread.IsBackground = true;
                     thread.Start();
-                    txtLoading.Text = "Loading";
-
-                    //thread.Join();
-                    //txtLoading.Text = "over";
+                    //txtLoading.Text = "Loading";
                 }
 
                 if (type == "File")
@@ -343,8 +339,8 @@ namespace CompressTool
 
                     Thread thread = new Thread(t =>
                     {
-                        MyInvoke mi = new MyInvoke(UpdateStatus);
-                        this.BeginInvoke(mi, new Object[] { "OVER" });
+                        //MyInvoke mi = new MyInvoke(UpdateStatus);
+                        //this.BeginInvoke(mi, new Object[] { "OVER" });
                         using (ZipFile zip = new ZipFile(Encoding.UTF8))
                         {
                            
@@ -361,26 +357,21 @@ namespace CompressTool
 
                             zip.AddFile(sourcePath, string.Empty);
                             zip.SaveProgress += Zip_saveFileProgress;
-                            zip.Save(zipPath);
-                            //txtLoading.Invoke(new MethodInvoker(delegate {
-                            //    txtLoading.Text = " ";
-                            //}));
-                            MessageBox.Show("Success!", "Message");
 
+                            //zip.UpdateFile(zipPath);
+
+
+                            zip.Save(zipPath);
+
+
+
+                            MessageBox.Show("Success!", "Message");
                         }
                     });
 
-                    //thread1 = new Thread(new ThreadStart(Sample));
                     thread.IsBackground = true;
                     thread.Start();
-                    txtLoading.Text = "Loading";
-                    //while (thread.IsAlive)
-                    //{
-                    //    txtLoading.Text = "Loading";
-                    //}
-
-                    //thread.Join();
-                    //txtLoading.Text = "over";
+                    //txtLoading.Text = "Loading";
                 }
             }
             catch (Exception e)
@@ -394,10 +385,6 @@ namespace CompressTool
         #region 進度條設定
         public void Zip_saveProgress(object sender, SaveProgressEventArgs e)
         {
-
-
-
-
             if (e.EventType == ZipProgressEventType.Saving_BeforeWriteEntry)
 
 
@@ -415,7 +402,6 @@ namespace CompressTool
                     progressBar.Update();
                     
                 }));
-            //txtLoading.Text = " ";
         }
         //計算進度百分比
         public void Zip_saveFileProgress(object sender, SaveProgressEventArgs e)
@@ -430,21 +416,31 @@ namespace CompressTool
                     progressBar.Update();
                     
                 }));
-            //txtLoading.Text = " ";
         }
         #endregion
 
         //建立目錄
         private void CheckDirectory(string path)
         {
-            if (!Directory.Exists(path))
+            if (Directory.Exists(path))
             {
-                Directory.CreateDirectory(path + "_壓縮檔");
-            }
-            else
-            {
-                Directory.CreateDirectory(path + "_壓縮檔");
-            }
+                try
+                {
+                    Directory.Delete(path, true);
+                }
+
+                catch (IOException e)
+                {
+                    MessageBox.Show(e.Message, "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+        }
+
+                   
+
+        
+
+            Directory.CreateDirectory(path + "_壓縮檔");
 
             target_address = path + "_壓縮檔";
         }
@@ -469,39 +465,35 @@ namespace CompressTool
             }
         }
 
-        private void CompressTool_Load(object sender, EventArgs e)
-        {
-
-        }
 
         private void btnPause_Click(object sender, EventArgs e)
         {
-            _pauseEvent.Reset();
+            //    _pauseEvent.Reset();
         }
 
         private void btnResume_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Hello", "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            _pauseEvent.Set();
+            //    MessageBox.Show("Hello", "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    _pauseEvent.Set();
         }
 
 
-        //public void Stop()
-        //{
-        //    // Signal the shutdown event
-        //    _shutdownEvent.Set();
-        //    Console.WriteLine("Thread Stopped ");
-
-        //    // Make sure to resume any paused threads
-        //    _pauseEvent.Set();
-
-        //    // Wait for the thread to exit
-        //    _thread.Join();
-        //}
-
-        public void UpdateStatus(string param1)
+        public void Stop()
         {
-            this.txtLoading.Text = param1;
+            //    // Signal the shutdown event
+            //    _shutdownEvent.Set();
+            //    Console.WriteLine("Thread Stopped ");
+
+            //    // Make sure to resume any paused threads
+            //    _pauseEvent.Set();
+
+            //    // Wait for the thread to exit
+            //    _thread.Join();
+        }
+
+    public void UpdateStatus(string param1)
+        {
+            //this.txtLoading.Text = param1;
         }
     }
 }

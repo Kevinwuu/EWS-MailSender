@@ -34,3 +34,4 @@ C:\Users\Kevin\Desktop\壓縮小工具\壓縮小工具\CompressTool\CompressTool
 C:\Users\Kevin\Desktop\壓縮小工具\壓縮小工具\CompressTool\CompressTool\obj\Release\CompressTool.exe
 C:\Users\Kevin\Desktop\壓縮小工具\壓縮小工具\CompressTool\CompressTool\obj\Release\CompressTool.pdb
 C:\Users\Kevin\Desktop\壓縮小工具\壓縮小工具\CompressTool\CompressTool\bin\Release\CompressTool.pdb
+C:\Users\Kevin\Desktop\壓縮小工具\壓縮小工具\CompressTool\CompressTool\obj\Release\CompressTool.csprojAssemblyReference.cache
