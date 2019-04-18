@@ -41,7 +41,6 @@
             this.txtBody = new System.Windows.Forms.TextBox();
             this.btnsend = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.btnSelectFolder = new System.Windows.Forms.Button();
             this.textFolder = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -337,7 +336,6 @@
         private System.Windows.Forms.TextBox txtBody;
         private System.Windows.Forms.Button btnsend;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.Button btnSelectFolder;
         private System.Windows.Forms.TextBox textFolder;
         private System.Windows.Forms.Label label7;

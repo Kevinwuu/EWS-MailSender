@@ -7,6 +7,7 @@ using System.IO;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace CompressTool
 {
@@ -77,11 +78,11 @@ namespace CompressTool
         //選擇來源資料夾
         private void btnSelectFolder_Click(object sender, EventArgs e)
         {
-            FolderBrowserDialog folder = new FolderBrowserDialog();
-            if (folder.ShowDialog() == DialogResult.OK)
+            CommonOpenFileDialog folder = new CommonOpenFileDialog();
+            folder.IsFolderPicker = true;
+            if (folder.ShowDialog() == CommonFileDialogResult.Ok)
             {
-
-                string folderPath = folder.SelectedPath;
+                string folderPath = folder.FileName;
                 textFolder.Text = folderPath;
                 Cursor.Current = Cursors.WaitCursor;
                 DirectoryInfo di = new DirectoryInfo(folderPath);
@@ -90,6 +91,8 @@ namespace CompressTool
                 Cursor.Current = Cursors.Default;
             }
         }
+
+
 
         //計算資料夾大小
         public static long GetDirSize(DirectoryInfo d)

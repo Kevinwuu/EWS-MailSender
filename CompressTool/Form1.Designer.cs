@@ -32,7 +32,6 @@ namespace CompressTool
         private void InitializeComponent()
         {
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.label7 = new System.Windows.Forms.Label();
             this.cbData1 = new System.Windows.Forms.ComboBox();
             this.Compress = new System.Windows.Forms.Button();
@@ -399,7 +398,6 @@ namespace CompressTool
 
         #endregion
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox cbData1;
         private System.Windows.Forms.Button Compress;

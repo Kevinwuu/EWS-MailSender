@@ -1,8 +1,8 @@
 ﻿using Microsoft.Exchange.WebServices.Data;
+using Microsoft.WindowsAPICodePack.Dialogs;
 using System;
 using System.IO;
 using System.Net;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace CompressTool
@@ -11,11 +11,9 @@ namespace CompressTool
     {
         public delegate void MyInvoke(string str1, string str2);
         public EmailSender()
-        {
-            
+        {           
             InitializeComponent();
             txtAccount.Focus();
-
         }
 
         public string testString;
@@ -114,10 +112,11 @@ namespace CompressTool
 
         private void btnSelectFolder_Click(object sender, EventArgs e)
         {
-            FolderBrowserDialog folder = new FolderBrowserDialog();
-            if (folder.ShowDialog() == DialogResult.OK)
+            CommonOpenFileDialog folder = new CommonOpenFileDialog();
+            folder.IsFolderPicker = true;
+            if (folder.ShowDialog() == CommonFileDialogResult.Ok)
             {
-                string folderPath = folder.SelectedPath;
+                string folderPath = folder.FileName;
                 textFolder.Text = folderPath;
             }
         }
