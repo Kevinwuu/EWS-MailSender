@@ -60,9 +60,9 @@
             this.label1.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label1.Location = new System.Drawing.Point(39, 81);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(112, 20);
+            this.label1.Size = new System.Drawing.Size(61, 20);
             this.label1.TabIndex = 0;
-            this.label1.Text = "發送者(Email):";
+            this.label1.Text = "發送者:";
             // 
             // label2
             // 
@@ -80,9 +80,9 @@
             this.label3.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label3.Location = new System.Drawing.Point(39, 114);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(112, 20);
+            this.label3.Size = new System.Drawing.Size(61, 20);
             this.label3.TabIndex = 2;
-            this.label3.Text = "接收者(Email):";
+            this.label3.Text = "接收者:";
             // 
             // label4
             // 
@@ -282,9 +282,9 @@
             this.label8.ForeColor = System.Drawing.Color.Red;
             this.label8.Location = new System.Drawing.Point(143, 183);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(212, 12);
+            this.label8.Size = new System.Drawing.Size(192, 12);
             this.label8.TabIndex = 22;
-            this.label8.Text = "請選擇只包含壓縮(分割)檔的的資料夾 !";
+            this.label8.Text = "請選擇只包含附件檔案的的資料夾 !";
             // 
             // EmailSender
             // 
