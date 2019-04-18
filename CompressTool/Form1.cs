@@ -422,28 +422,35 @@ namespace CompressTool
         //建立目錄
         private void CheckDirectory(string path)
         {
-            if (Directory.Exists(path))
+            string newDir = path + "_壓縮檔";
+            if (Directory.Exists(newDir))
             {
-                try
-                {
-                    Directory.Delete(path, true);
-                }
+                DirectoryInfo di = new DirectoryInfo(newDir);
+                ClearReadOnly(di);
+                di.Delete(true);
+            }                     
+            Directory.CreateDirectory(newDir);
 
-                catch (IOException e)
-                {
-                    MessageBox.Show(e.Message, "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-
+            target_address = newDir;
         }
 
-                   
-
-        
-
-            Directory.CreateDirectory(path + "_壓縮檔");
-
-            target_address = path + "_壓縮檔";
+        // 清除唯讀屬性
+        private void ClearReadOnly(DirectoryInfo parentDirectory)
+        {
+            if (parentDirectory != null)
+            {
+                parentDirectory.Attributes = FileAttributes.Normal;
+                foreach (FileInfo fi in parentDirectory.GetFiles())
+                {
+                    fi.Attributes = FileAttributes.Normal;
+                }
+                foreach (DirectoryInfo di in parentDirectory.GetDirectories())
+                {
+                    ClearReadOnly(di);
+                }
+            }
         }
+
 
         //開啟寄信頁面EmailSender
         public void btnMail_Click(object sender, EventArgs e)
