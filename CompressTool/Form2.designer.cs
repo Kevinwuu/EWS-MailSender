@@ -122,7 +122,6 @@
             this.txtSender.Name = "txtSender";
             this.txtSender.Size = new System.Drawing.Size(148, 27);
             this.txtSender.TabIndex = 6;
-            this.txtSender.Text = "kevin-wu";
             // 
             // txtPass
             // 
@@ -132,7 +131,6 @@
             this.txtPass.PasswordChar = '*';
             this.txtPass.Size = new System.Drawing.Size(351, 27);
             this.txtPass.TabIndex = 7;
-            this.txtPass.Text = "systex1995/2/2";
             // 
             // txtReciever
             // 
@@ -141,7 +139,6 @@
             this.txtReciever.Name = "txtReciever";
             this.txtReciever.Size = new System.Drawing.Size(147, 27);
             this.txtReciever.TabIndex = 8;
-            this.txtReciever.Text = "kevin84020202";
             // 
             // txtSubject
             // 
@@ -159,7 +156,6 @@
             this.txtBody.Name = "txtBody";
             this.txtBody.Size = new System.Drawing.Size(420, 61);
             this.txtBody.TabIndex = 11;
-            this.txtBody.Text = "yoyoyo";
             // 
             // btnsend
             // 
@@ -217,7 +213,6 @@
             this.txtAccount.Name = "txtAccount";
             this.txtAccount.Size = new System.Drawing.Size(352, 27);
             this.txtAccount.TabIndex = 7;
-            this.txtAccount.Text = "1800476";
             // 
             // btnBack
             // 
@@ -246,7 +241,7 @@
             this.txtRecieverHost.Name = "txtRecieverHost";
             this.txtRecieverHost.Size = new System.Drawing.Size(198, 27);
             this.txtRecieverHost.TabIndex = 18;
-            this.txtRecieverHost.Text = "@gmail.com";
+            this.txtRecieverHost.Text = "@systex.com";
             // 
             // btnOpenFolder
             // 
@@ -265,27 +260,27 @@
             this.txtSendStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSendStatus.AutoSize = true;
             this.txtSendStatus.Font = new System.Drawing.Font("新細明體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.txtSendStatus.Location = new System.Drawing.Point(270, 327);
+            this.txtSendStatus.Location = new System.Drawing.Point(243, 329);
             this.txtSendStatus.Name = "txtSendStatus";
-            this.txtSendStatus.Size = new System.Drawing.Size(140, 13);
+            this.txtSendStatus.Size = new System.Drawing.Size(0, 13);
             this.txtSendStatus.TabIndex = 21;
-            this.txtSendStatus.Text = "325253253以傳送 4 / 4 封";
+            this.txtSendStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtFinished
             // 
             this.txtFinished.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtFinished.AutoSize = true;
             this.txtFinished.Font = new System.Drawing.Font("新細明體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.txtFinished.Location = new System.Drawing.Point(272, 351);
+            this.txtFinished.Location = new System.Drawing.Point(262, 371);
             this.txtFinished.Name = "txtFinished";
-            this.txtFinished.Size = new System.Drawing.Size(49, 13);
+            this.txtFinished.Size = new System.Drawing.Size(0, 13);
             this.txtFinished.TabIndex = 21;
-            this.txtFinished.Text = "1111111";
+            this.txtFinished.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.ForeColor = System.Drawing.Color.Brown;
+            this.label8.ForeColor = System.Drawing.Color.Red;
             this.label8.Location = new System.Drawing.Point(143, 183);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(212, 12);

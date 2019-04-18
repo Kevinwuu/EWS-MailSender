@@ -30,7 +30,7 @@ namespace CompressTool
         private void btnsend_Click(object sender, EventArgs e)
         {
             txtFinished.Text = "";
-            txtSendStatus.Text = "Loading...";
+            txtSendStatus.Text = "";
             Cursor.Current = Cursors.WaitCursor;
 
 
@@ -60,9 +60,11 @@ namespace CompressTool
                 {
                     if (cur is TextBox && cur.Text == string.Empty)            
                     {
-                        if(cur.Name != "txtSubject" || cur.Name != "txtBody" || cur.Name != "textFolder")
-                        MessageBox.Show("請檢查是否有資料遺漏", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
+                        if (cur.Name != "txtBody" && cur.Name != "textFolder")
+                        {
+                            MessageBox.Show("請檢查是否有資料遺漏", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
                     }
                 }
 
@@ -78,6 +80,8 @@ namespace CompressTool
 
                         // 改變主旨編號
                         message.Subject = subject + $"({i+1})";
+                        
+                        // 即時刷新頁面
                         this.Refresh();
 
                         message.SendAndSaveCopy();
@@ -102,7 +106,7 @@ namespace CompressTool
             } 
             catch(Exception ex) 
             {
-                MessageBox.Show(ex.Message, "Message");
+                MessageBox.Show(ex.Message, "Error");
                 return;
             }
         }

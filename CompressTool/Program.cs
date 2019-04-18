@@ -19,9 +19,8 @@ namespace CompressTool
             Application.SetCompatibleTextRenderingDefault(false);
 
             CompressTool compress = new CompressTool();
-            //EmailSender email = new EmailSender();
-            //email.Hide();
-            compress.Text = "壓縮寄信小工具";
+
+            compress.Text = "Outlook寄信工具";
             Application.Run(compress);
         }
     }

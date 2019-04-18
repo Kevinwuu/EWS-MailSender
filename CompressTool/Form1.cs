@@ -38,10 +38,11 @@ namespace CompressTool
             email.ShowDialog();
         }
 
+        // 視窗關閉
         private void CompressTool_Closing(object sender, CancelEventArgs e)
         {
             DialogResult dr = MessageBox.Show("確定要關閉程式嗎?",
-            "Closing event!", MessageBoxButtons.YesNo);
+            "Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dr == DialogResult.No)
             {
                 e.Cancel = false;
@@ -204,35 +205,43 @@ namespace CompressTool
             bool hasFile = !string.IsNullOrEmpty(sourceFilePath);
             bool hasFolder = !string.IsNullOrEmpty(sourceFolderPath);
 
-            //判斷是否有空欄位
-            if (radioButton1.Checked)
+            try
             {
-                string targetPath = Path.GetDirectoryName(sourceFilePath);
-                string name = Path.GetFileNameWithoutExtension(sourceFilePath);
-                if (!hasFile)
+                //判斷是否有空欄位
+                if (radioButton1.Checked == true)
                 {
-                    MessageBox.Show("請選擇來源路徑.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    textFile.Focus();
-                    return;
+                    string targetPath = Path.GetDirectoryName(sourceFilePath);
+                    string name = Path.GetFileNameWithoutExtension(sourceFilePath);
+                    if (hasFile)
+                    {
+                        ZipFiles("File", sourceFilePath, targetPath, password, string.Empty);
+                    }
+                    else
+                    {
+                        MessageBox.Show("請選擇來源路徑.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        textFile.Focus();
+                        return;
+                    }
                 }
-                else
+                if (radioButton2.Checked)
                 {
-                    ZipFiles("File", sourceFilePath, targetPath, password, string.Empty);
+                    string targetPath = Path.GetDirectoryName(sourceFolderPath);
+                    if (hasFolder)
+                    {
+                        ZipFiles("Folder", sourceFolderPath, targetPath, password, string.Empty);
+                    }
+                    else
+                    {
+                        MessageBox.Show("請選擇來源路徑.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        textFolder.Focus();
+                        return;
+                    }
                 }
             }
-            else
+            catch(Exception ex)
             {
-                string targetPath = Path.GetDirectoryName(sourceFolderPath);
-                if (!hasFolder)
-                {
-                    MessageBox.Show("請選擇來源路徑.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    textFolder.Focus();
-                    return;
-                }
-                else
-                {
-                    ZipFiles("Folder", sourceFolderPath, targetPath, password, string.Empty);
-                }
+                MessageBox.Show("請選擇資料來源路徑 !", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
         }
 

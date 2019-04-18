@@ -58,8 +58,6 @@ namespace CompressTool
             this.label6 = new System.Windows.Forms.Label();
             this.status = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.btnPause = new System.Windows.Forms.Button();
-            this.btnResume = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -312,9 +310,9 @@ namespace CompressTool
             this.label5.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label5.Location = new System.Drawing.Point(71, 13);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(153, 24);
+            this.label5.Size = new System.Drawing.Size(191, 24);
             this.label5.TabIndex = 27;
-            this.label5.Text = "Step1 : 選取來源";
+            this.label5.Text = "Step1 : 選取資料來源";
             // 
             // label3
             // 
@@ -360,9 +358,7 @@ namespace CompressTool
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(669, 560);
-            this.Controls.Add(this.btnResume);
-            this.Controls.Add(this.btnPause);
+            this.ClientSize = new System.Drawing.Size(669, 564);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.status);
             this.Controls.Add(this.label6);
@@ -429,8 +425,6 @@ namespace CompressTool
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label status;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button btnPause;
-        private System.Windows.Forms.Button btnResume;
     }
 }
 
