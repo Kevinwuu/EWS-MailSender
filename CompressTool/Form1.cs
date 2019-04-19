@@ -1,4 +1,4 @@
-﻿using Ionic.Zip;
+using Ionic.Zip;
 using System;
 using System.Collections;
 using System.ComponentModel;
@@ -15,6 +15,8 @@ namespace CompressTool
     {
 
         public EmailSender email = new EmailSender();
+        
+        // 壓縮完成路徑
         public string target_address;
         ManualResetEvent _shutdownEvent = new ManualResetEvent(false);
         ManualResetEvent _pauseEvent = new ManualResetEvent(true);
@@ -26,16 +28,16 @@ namespace CompressTool
             InitializeComponent();
             Closing += new CancelEventHandler(this.CompressTool_Closing); //設定要觸發的事件
             email.Hide();
-            txtCompressPass.UseSystemPasswordChar = true;
-            cbData.Text = "";
-            cbData1.Text = "KB";
+            txtEncryptPass.UseSystemPasswordChar = true;
+            cbSeparateSize.Text = "";
+            cbUnit.Text = "KB";
 
         }
 
         //開啟寄信頁面
         private void showEmail()
         {
-            email.changeText(target_address);
+            email.changeAttachPath(target_address);
             email.ShowDialog();
         }
 
@@ -66,7 +68,7 @@ namespace CompressTool
                 Cursor.Current = Cursors.WaitCursor;
                 string fileName = ofd.SafeFileName;
                 string compressFilePath = ofd.FileName;
-                textFile.Text = compressFilePath;
+                txtFilePath.Text = compressFilePath;
                 long length = new FileInfo(ofd.FileName).Length;
 
                 Calculate(length);
@@ -83,7 +85,7 @@ namespace CompressTool
             if (folder.ShowDialog() == CommonFileDialogResult.Ok)
             {
                 string folderPath = folder.FileName;
-                textFolder.Text = folderPath;
+                txtFolderPath.Text = folderPath;
                 Cursor.Current = Cursors.WaitCursor;
                 DirectoryInfo di = new DirectoryInfo(folderPath);
                 long length = GetDirSize(di);
@@ -167,28 +169,28 @@ namespace CompressTool
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
             //設定文字框顯示字串and計算檔案大小
-            if(radioButton1.Checked)
+            if(radFile.Checked)
             {
-                if(String.IsNullOrEmpty(textFile.Text))
+                if(String.IsNullOrEmpty(txtFilePath.Text))
                 {
                     textFileSize.Text = "";
                 }
                 else
                 {
-                    string path = textFile.Text;
+                    string path = txtFilePath.Text;
                     long length = new FileInfo(path).Length;
                     Calculate(length);
                 }
             }
             else
             {
-                if (String.IsNullOrEmpty(textFolder.Text))
+                if (String.IsNullOrEmpty(txtFolderPath.Text))
                 {
                     textFileSize.Text = "";
                 }
                 else
                 {
-                    string folderPath = textFolder.Text;
+                    string folderPath = txtFolderPath.Text;
                     DirectoryInfo di = new DirectoryInfo(folderPath);
                     Cursor.Current = Cursors.WaitCursor;
                     long length = GetDirSize(di);
@@ -202,16 +204,16 @@ namespace CompressTool
         private void Compress_Click(object sender, EventArgs e)
         {
 
-            string sourceFilePath = textFile.Text;
-            string sourceFolderPath = textFolder.Text;
-            string password = txtCompressPass.Text;
+            string sourceFilePath = txtFilePath.Text;
+            string sourceFolderPath = txtFolderPath.Text;
+            string password = txtEncryptPass.Text;
             bool hasFile = !string.IsNullOrEmpty(sourceFilePath);
             bool hasFolder = !string.IsNullOrEmpty(sourceFolderPath);
 
             try
             {
                 //判斷是否有空欄位
-                if (radioButton1.Checked == true)
+                if (radFile.Checked == true)
                 {
                     string targetPath = Path.GetDirectoryName(sourceFilePath);
                     string name = Path.GetFileNameWithoutExtension(sourceFilePath);
@@ -222,11 +224,11 @@ namespace CompressTool
                     else
                     {
                         MessageBox.Show("請選擇來源路徑.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        textFile.Focus();
+                        txtFilePath.Focus();
                         return;
                     }
                 }
-                if (radioButton2.Checked)
+                if (radFolder.Checked)
                 {
                     string targetPath = Path.GetDirectoryName(sourceFolderPath);
                     if (hasFolder)
@@ -236,7 +238,7 @@ namespace CompressTool
                     else
                     {
                         MessageBox.Show("請選擇來源路徑.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        textFolder.Focus();
+                        txtFolderPath.Focus();
                         return;
                     }
                 }
@@ -252,7 +254,7 @@ namespace CompressTool
         //sourcePath: 來源路徑，targetPath: 存檔路徑，password: 密碼，comment: 註解或壓縮等級
         private void ZipFiles(string type,string sourcePath ,string targetPath, string password, string comment)
         {
-            string fragment = cbData.Text;
+            string fragment = cbSeparateSize.Text;
             bool isSeperate = !String.IsNullOrEmpty(fragment);
             bool hasPassword = !String.IsNullOrEmpty(password);
             int sepSize = 0;
@@ -274,7 +276,7 @@ namespace CompressTool
                     return;
                 }
 
-                if (cbData1.Text == "KB")
+                if (cbUnit.Text == "KB")
                 {
                     sepSize = size * 1024;
                 }
@@ -287,7 +289,7 @@ namespace CompressTool
                 if (sepSize > maxsize || sepSize < minsize)
                 {
                     MessageBox.Show("請輸入64KB~2GB的數值!", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    cbData.Focus();
+                    cbSeparateSize.Focus();
                     return;
                 }
             }
@@ -428,6 +430,8 @@ namespace CompressTool
         }
 
 
+
+
         //開啟寄信頁面EmailSender
         public void btnMail_Click(object sender, EventArgs e)
         {
@@ -440,11 +444,11 @@ namespace CompressTool
         {
             if (showPass.Checked)
             {
-                txtCompressPass.UseSystemPasswordChar = false;
+                txtEncryptPass.UseSystemPasswordChar = false;
             }
             else
             {
-                txtCompressPass.UseSystemPasswordChar = true;
+                txtEncryptPass.UseSystemPasswordChar = true;
             }
         }
 

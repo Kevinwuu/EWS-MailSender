@@ -19,9 +19,10 @@ namespace CompressTool
         public string testString;
 
 
-        public void changeText(string str)
+        // 帶入壓縮檔所在路徑
+        public void changeAttachPath(string str)
         {
-            textFolder.Text = str;
+            txtFolder.Text = str;
         }
 
         #region 送出信件
@@ -29,83 +30,74 @@ namespace CompressTool
         {
             txtFinished.Text = "";
             txtSendStatus.Text = "";
-            Cursor.Current = Cursors.WaitCursor;
-
-
-            string user = txtAccount.Text;
-            string pass = txtPass.Text;
-            string senderEmail = txtSender.Text + txtSenderHoset.Text;
-            string reciever = txtReciever.Text + txtRecieverHost.Text;
-            string body = txtBody.Text;
-            string subject = txtSubject.Text;
-
-            try 
+            if (CheckDataGrid())
             {
-                // Setting Credential 
-                ExchangeService service = new ExchangeService(ExchangeVersion.Exchange2010_SP1);
-                service.Credentials = new NetworkCredential(user, pass);
-                service.AutodiscoverUrl(senderEmail);
 
-                EmailMessage message = new EmailMessage(service);
 
-                // 加入屬性
-                message.Subject = subject;
-                message.Body = body;
-                message.ToRecipients.Add(reciever);
+                string user = txtAccount.Text;
+                string password = txtPass.Text;
+                string reciever = txtReciever.Text + txtRecieverHost.Text;
+                string body = txtBody.Text;
+                string subject = txtSubject.Text;
+                Cursor.Current = Cursors.WaitCursor;
 
-                //判斷是否有空白輸入
-                foreach (Control cur in Controls)           
+                try 
                 {
-                    if (cur is TextBox && cur.Text == string.Empty)            
+                    // Setting Credential 
+                    ExchangeService service = new ExchangeService(ExchangeVersion.Exchange2010_SP1);
+                    service.Credentials = new NetworkCredential(user, password);
+                    service.Url = new Uri("https://casarray.systex.tw/EWS/Exchange.asmx");
+
+                    // 設定信件屬性
+                    EmailMessage message = new EmailMessage(service);
+                    message.Subject = subject;
+                    message.Body = body;
+                    message.ToRecipients.Add(reciever);
+
+
+                    // 判斷是否有附加檔案
+                    if (txtFolder.Text != "")
                     {
-                        if (cur.Name != "txtBody" && cur.Name != "textFolder")
+                        string[] files = Directory.GetFiles(txtFolder.Text, "*");
+
+                        for (int i = 0; i < files.Length; i++)
                         {
-                            MessageBox.Show("請檢查是否有資料遺漏", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            return;
+                            UpdateSendStatus(0, files.Length);
+
+                            message.Attachments.AddFileAttachment(files[i]);
+
+                            // 改變主旨編號
+                            message.Subject = subject + $"({i+1})";
+                        
+                            // 即時刷新頁面
+                            this.Refresh();
+
+                            message.SendAndSaveCopy();
+                            UpdateSendStatus(i, files.Length);
+
+                            // Free the memory and continue
+                            message = null;
+                            message = new EmailMessage(service);
+                            message.Body = body;
+                            message.ToRecipients.Add(reciever);
                         }
                     }
-                }
-
-                // 判斷是否有附加檔案
-                if (textFolder.Text != "")
-                {
-                    string[] files = Directory.GetFiles(textFolder.Text, "*");
-
-                    for (int i = 0; i < files.Length; i++)
+                    else
                     {
-
-                        message.Attachments.AddFileAttachment(files[i]);
-
-                        // 改變主旨編號
-                        message.Subject = subject + $"({i+1})";
-                        
-                        // 即時刷新頁面
-                        this.Refresh();
-
                         message.SendAndSaveCopy();
-                        UpdateSendStatus(i, files.Length);
-
-                        // Free the memory and continue
-                        message = null;
-                        message = new EmailMessage(service);
-                        message.Body = body;
-                        message.ToRecipients.Add(reciever);
                     }
-                }
-                else
+                    txtFinished.Text = "傳送完畢";
+                    MessageBox.Show("已寄出!");
+                    Cursor.Current = Cursors.Default;
+                    // Free the memory
+                    message = null;
+                } 
+                catch(Exception ex) 
                 {
-                    message.SendAndSaveCopy();
+                    MessageBox.Show(ex.Message, "Error");
+                    return;
                 }
-                txtFinished.Text = "傳送完畢";
-                MessageBox.Show("已寄出!");
-                Cursor.Current = Cursors.Default;
-                // Free the memory
-                message = null;
-            } 
-            catch(Exception ex) 
-            {
-                MessageBox.Show(ex.Message, "Error");
-                return;
+
             }
         }
         #endregion
@@ -117,10 +109,11 @@ namespace CompressTool
             if (folder.ShowDialog() == CommonFileDialogResult.Ok)
             {
                 string folderPath = folder.FileName;
-                textFolder.Text = folderPath;
+                txtFolder.Text = folderPath;
             }
         }
 
+        // 返回
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -130,7 +123,7 @@ namespace CompressTool
         private void btnOpenFolder_Click(object sender, EventArgs e)
         {
             string myPath = @"";
-            myPath += textFolder.Text;
+            myPath += txtFolder.Text;
             if (!string.IsNullOrEmpty(myPath))
             {
                 System.Diagnostics.Process prc = new System.Diagnostics.Process();
@@ -139,9 +132,28 @@ namespace CompressTool
             }
         }
 
+        // 信件傳送狀態
         public void UpdateSendStatus(int x, int total)
         {
-            txtSendStatus.Text = $"已傳送 {x + 1} / {total} 封郵件";
+            txtSendStatus.Text = $"{x + 1} / {total} 已傳送";
+        }
+
+        //判斷是否有空白輸入
+        public bool CheckDataGrid()
+        {
+            foreach (Control cur in Controls)
+            {
+                if (cur is TextBox && cur.Text == string.Empty)
+                {
+                    // 排除非必要輸入欄位
+                    if (cur.Name != "txtBody" && cur.Name != "txtFolder")
+                    {
+                        MessageBox.Show("請檢查是否有資料遺漏", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return false;
+                    }
+                }
+            }
+            return true;
         }
 
     }

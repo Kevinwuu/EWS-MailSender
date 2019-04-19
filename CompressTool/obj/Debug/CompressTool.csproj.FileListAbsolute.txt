@@ -52,3 +52,7 @@ C:\Users\Kevin\Desktop\壓縮小工具\壓縮小工具\CompressTool\CompressTool
 C:\Users\Kevin\Desktop\壓縮小工具\壓縮小工具\CompressTool\CompressTool\obj\Debug\CompressTool.csproj.CopyComplete
 C:\Users\Kevin\Desktop\壓縮小工具\壓縮小工具\CompressTool\CompressTool\obj\Debug\CompressTool.exe
 C:\Users\Kevin\Desktop\壓縮小工具\壓縮小工具\CompressTool\CompressTool\obj\Debug\CompressTool.pdb
+C:\Users\Kevin\Desktop\壓縮小工具\壓縮小工具\CompressTool\CompressTool\bin\Debug\Microsoft.WindowsAPICodePack.dll
+C:\Users\Kevin\Desktop\壓縮小工具\壓縮小工具\CompressTool\CompressTool\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
+C:\Users\Kevin\Desktop\壓縮小工具\壓縮小工具\CompressTool\CompressTool\bin\Debug\Microsoft.WindowsAPICodePack.pdb
+C:\Users\Kevin\Desktop\壓縮小工具\壓縮小工具\CompressTool\CompressTool\bin\Debug\Microsoft.WindowsAPICodePack.Shell.pdb
