@@ -43,7 +43,6 @@ C:\Users\Kevin\Desktop\壓縮小工具\壓縮小工具\CompressTool\CompressTool
 C:\Users\Kevin\Desktop\壓縮小工具\壓縮小工具\CompressTool\CompressTool\bin\Debug\Microsoft.Exchange.WebServices.xml
 C:\Users\Kevin\Desktop\壓縮小工具\壓縮小工具\CompressTool\CompressTool\bin\Debug\Microsoft.Exchange.WebServices.Auth.pdb
 C:\Users\Kevin\Desktop\壓縮小工具\壓縮小工具\CompressTool\CompressTool\bin\Debug\Microsoft.Exchange.WebServices.Auth.xml
-C:\Users\Kevin\Desktop\壓縮小工具\壓縮小工具\CompressTool\CompressTool\obj\Debug\CompressTool.csprojAssemblyReference.cache
 C:\Users\Kevin\Desktop\壓縮小工具\壓縮小工具\CompressTool\CompressTool\obj\Debug\CompressTool.CompressTool.resources
 C:\Users\Kevin\Desktop\壓縮小工具\壓縮小工具\CompressTool\CompressTool\obj\Debug\CompressTool.EmailSender.resources
 C:\Users\Kevin\Desktop\壓縮小工具\壓縮小工具\CompressTool\CompressTool\obj\Debug\CompressTool.Properties.Resources.resources
@@ -56,3 +55,4 @@ C:\Users\Kevin\Desktop\壓縮小工具\壓縮小工具\CompressTool\CompressTool
 C:\Users\Kevin\Desktop\壓縮小工具\壓縮小工具\CompressTool\CompressTool\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
 C:\Users\Kevin\Desktop\壓縮小工具\壓縮小工具\CompressTool\CompressTool\bin\Debug\Microsoft.WindowsAPICodePack.pdb
 C:\Users\Kevin\Desktop\壓縮小工具\壓縮小工具\CompressTool\CompressTool\bin\Debug\Microsoft.WindowsAPICodePack.Shell.pdb
+C:\Users\Kevin\Desktop\壓縮小工具\壓縮小工具\CompressTool\CompressTool\bin\Debug\log4net.dll

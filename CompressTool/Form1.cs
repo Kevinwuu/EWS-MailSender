@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using Microsoft.WindowsAPICodePack.Dialogs;
+using log4net;
+using log4net.Appender;
+using log4net.Config;
 
 namespace CompressTool
 {
@@ -33,6 +36,7 @@ namespace CompressTool
             cbUnit.Text = "KB";
 
         }
+        private static log4net.ILog Log = log4net.LogManager.GetLogger("");
 
         //開啟寄信頁面
         private void showEmail()
@@ -245,7 +249,9 @@ namespace CompressTool
             }
             catch(Exception ex)
             {
+                Log.Info(" info ");
                 MessageBox.Show("請選擇資料來源路徑 !", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Log.Info(" info ");
                 return;
             }
         }

@@ -13,6 +13,8 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
+//[assembly: log4net.Config.DOMConfigurator(ConfigFileExtension = "config", Watch = true)]
+[assembly: log4net.Config.XmlConfigurator(ConfigFileExtension = "config", Watch = true)]
 
 // 將 ComVisible 設為 false 可對 COM 元件隱藏
 // 組件中的類型。若必須從 COM 存取此組件中的類型，
@@ -34,3 +36,4 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+
