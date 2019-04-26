@@ -2,5 +2,16 @@
 .vs/
 
 
-# Visual Studio packages
+# # NuGet Packages Directory
 packages/
+
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+*.pdb
+
+
+# Others
+[Bb]in
+[Oo]bj
