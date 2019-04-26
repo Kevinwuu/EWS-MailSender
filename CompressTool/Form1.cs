@@ -11,19 +11,19 @@ using Microsoft.WindowsAPICodePack.Dialogs;
 using log4net;
 using log4net.Appender;
 using log4net.Config;
+using CompressTool.Properties;
 
 namespace CompressTool
 {
+
     public partial class CompressTool : Form
     {
 
         public EmailSender email = new EmailSender();
-        
+
+
         // 壓縮完成路徑
         public string target_address;
-        ManualResetEvent _shutdownEvent = new ManualResetEvent(false);
-        ManualResetEvent _pauseEvent = new ManualResetEvent(true);
-        public delegate void MyInvoke(string str);
 
         // 頁面初始化
         public CompressTool()
@@ -74,6 +74,9 @@ namespace CompressTool
                 string compressFilePath = ofd.FileName;
                 txtFilePath.Text = compressFilePath;
                 long length = new FileInfo(ofd.FileName).Length;
+                txtFolderPath.Text = "";
+                radFile.Checked = true;
+                radFolder.Checked = false;
 
                 Calculate(length);
                 Cursor.Current = Cursors.Default;
@@ -93,6 +96,10 @@ namespace CompressTool
                 Cursor.Current = Cursors.WaitCursor;
                 DirectoryInfo di = new DirectoryInfo(folderPath);
                 long length = GetDirSize(di);
+                txtFilePath.Text = "";
+                radFile.Checked = false;
+                radFolder.Checked = true;
+
                 Calculate(length);
                 Cursor.Current = Cursors.Default;
             }
@@ -377,9 +384,6 @@ namespace CompressTool
                 progressBar.Invoke(new MethodInvoker(delegate
                 {
 
-                    // 初始化為true, stop時轉為false
-                    _pauseEvent.WaitOne(Timeout.Infinite);
-
                     //progressBar.Maximum = e.EntriesTotal;
                     //progressBar.Value = e.EntriesSaved + 1;
                     progressBar.Maximum = 100;
@@ -458,5 +462,38 @@ namespace CompressTool
             }
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string myPath = @"";
+            if (radFolder.Checked && !string.IsNullOrEmpty(txtFolderPath.Text))
+            {
+                myPath += txtFolderPath.Text;
+            }
+            if (radFile.Checked && !string.IsNullOrEmpty(txtFilePath.Text))
+            {
+                myPath += Path.GetDirectoryName(txtFilePath.Text);
+            }
+
+            if (!string.IsNullOrEmpty(myPath))
+            {
+                System.Diagnostics.Process prc = new System.Diagnostics.Process();
+                prc.StartInfo.FileName = myPath;
+                prc.Start();
+            }
+            else
+            {
+                MessageBox.Show("空白的路徑", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        // 記錄寄件資料
+        private void CompressTool_FormClosed(object sender, FormClosedEventArgs e)
+        {
+
+            Settings.Default.accountCache = email.accountCache;
+            Settings.Default.receiverNameCache = email.receiverNameCache;
+            Settings.Default.receiverHostCache = email.receiverHostCache;
+            Settings.Default.Save();
+        }
     }
 }

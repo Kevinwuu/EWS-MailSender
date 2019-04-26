@@ -4,9 +4,11 @@ using System;
 using System.IO;
 using System.Net;
 using System.Windows.Forms;
+using CompressTool.Properties;
 
 namespace CompressTool
 {
+
     public partial class EmailSender : Form
     {
         public delegate void MyInvoke(string str1, string str2);
@@ -14,9 +16,15 @@ namespace CompressTool
         {           
             InitializeComponent();
             txtAccount.Focus();
+            txtAccount.Text = Settings.Default.accountCache;
+            txtReceiverName.Text = Settings.Default.receiverNameCache;
+            txtReceiverHost.Text = Settings.Default.receiverHostCache;
         }
 
-        public string testString;
+        public string accountCache,receiverNameCache,receiverHostCache;
+
+
+        //private static MemoryCache cache = MemoryCache.Default;
 
 
         // 帶入壓縮檔所在路徑
@@ -32,13 +40,17 @@ namespace CompressTool
             txtSendStatus.Text = "";
             if (CheckDataGrid())
             {
-
-
                 string user = txtAccount.Text;
                 string password = txtPass.Text;
-                string reciever = txtReciever.Text + txtRecieverHost.Text;
+                string receiver = txtReceiverName.Text + "@" + txtReceiverHost.Text;
                 string body = txtBody.Text;
                 string subject = txtSubject.Text;
+
+                // 記錄快取
+                accountCache = user;
+                receiverNameCache = txtReceiverName.Text;
+                receiverHostCache = txtReceiverHost.Text;
+
                 Cursor.Current = Cursors.WaitCursor;
 
                 try 
@@ -52,7 +64,7 @@ namespace CompressTool
                     EmailMessage message = new EmailMessage(service);
                     message.Subject = subject;
                     message.Body = body;
-                    message.ToRecipients.Add(reciever);
+                    message.ToRecipients.Add(receiver);
 
 
                     // 判斷是否有附加檔案
@@ -79,7 +91,7 @@ namespace CompressTool
                             message = null;
                             message = new EmailMessage(service);
                             message.Body = body;
-                            message.ToRecipients.Add(reciever);
+                            message.ToRecipients.Add(receiver);
                         }
                     }
                     else
@@ -116,6 +128,7 @@ namespace CompressTool
         // 返回
         private void btnBack_Click(object sender, EventArgs e)
         {
+
             this.Hide();
         }
 

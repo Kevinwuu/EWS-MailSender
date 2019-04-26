@@ -58,6 +58,7 @@ namespace CompressTool
             this.status = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.btnOpenFolder = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -119,9 +120,9 @@ namespace CompressTool
             this.cbSeparateSize.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.cbSeparateSize.FormattingEnabled = true;
             this.cbSeparateSize.Items.AddRange(new object[] {
-            "64",
-            "100",
-            "200",
+            "5",
+            "10",
+            "14",
             "400"});
             this.cbSeparateSize.Location = new System.Drawing.Point(95, 251);
             this.cbSeparateSize.Name = "cbSeparateSize";
@@ -361,11 +362,22 @@ namespace CompressTool
             this.btnOpenFolder.Size = new System.Drawing.Size(75, 23);
             this.btnOpenFolder.TabIndex = 32;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(391, 431);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 33);
+            this.button1.TabIndex = 33;
+            this.button1.Text = "檢視";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // CompressTool
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(669, 564);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.status);
             this.Controls.Add(this.label6);
@@ -393,6 +405,7 @@ namespace CompressTool
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "CompressTool";
             this.Text = "Form1";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CompressTool_FormClosed);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -433,6 +446,7 @@ namespace CompressTool
         private System.Windows.Forms.Label status;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnOpenFolder;
+        private System.Windows.Forms.Button button1;
     }
 }
 

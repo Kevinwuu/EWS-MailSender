@@ -56,3 +56,4 @@ C:\Users\Kevin\Desktop\壓縮小工具\壓縮小工具\CompressTool\CompressTool
 C:\Users\Kevin\Desktop\壓縮小工具\壓縮小工具\CompressTool\CompressTool\bin\Debug\Microsoft.WindowsAPICodePack.pdb
 C:\Users\Kevin\Desktop\壓縮小工具\壓縮小工具\CompressTool\CompressTool\bin\Debug\Microsoft.WindowsAPICodePack.Shell.pdb
 C:\Users\Kevin\Desktop\壓縮小工具\壓縮小工具\CompressTool\CompressTool\bin\Debug\log4net.dll
+C:\Users\Kevin\Desktop\壓縮小工具\壓縮小工具\CompressTool\CompressTool\obj\Debug\CompressTool.csprojAssemblyReference.cache

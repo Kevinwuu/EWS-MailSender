@@ -22,5 +22,41 @@ namespace CompressTool.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string accountCache {
+            get {
+                return ((string)(this["accountCache"]));
+            }
+            set {
+                this["accountCache"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string receiverNameCache {
+            get {
+                return ((string)(this["receiverNameCache"]));
+            }
+            set {
+                this["receiverNameCache"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string receiverHostCache {
+            get {
+                return ((string)(this["receiverHostCache"]));
+            }
+            set {
+                this["receiverHostCache"] = value;
+            }
+        }
     }
 }

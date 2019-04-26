@@ -34,7 +34,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.txtPass = new System.Windows.Forms.TextBox();
-            this.txtReciever = new System.Windows.Forms.TextBox();
+            this.txtReceiverName = new System.Windows.Forms.TextBox();
             this.txtSubject = new System.Windows.Forms.TextBox();
             this.txtBody = new System.Windows.Forms.TextBox();
             this.btnsend = new System.Windows.Forms.Button();
@@ -44,11 +44,13 @@
             this.label7 = new System.Windows.Forms.Label();
             this.txtAccount = new System.Windows.Forms.TextBox();
             this.btnBack = new System.Windows.Forms.Button();
-            this.txtRecieverHost = new System.Windows.Forms.TextBox();
+            this.txtReceiverHost = new System.Windows.Forms.TextBox();
             this.btnOpenFolder = new System.Windows.Forms.Button();
             this.txtSendStatus = new System.Windows.Forms.Label();
             this.txtFinished = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label2
@@ -110,13 +112,13 @@
             this.txtPass.Size = new System.Drawing.Size(351, 27);
             this.txtPass.TabIndex = 7;
             // 
-            // txtReciever
+            // txtReceiverName
             // 
-            this.txtReciever.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.txtReciever.Location = new System.Drawing.Point(174, 85);
-            this.txtReciever.Name = "txtReciever";
-            this.txtReciever.Size = new System.Drawing.Size(147, 27);
-            this.txtReciever.TabIndex = 8;
+            this.txtReceiverName.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.txtReceiverName.Location = new System.Drawing.Point(174, 85);
+            this.txtReceiverName.Name = "txtReceiverName";
+            this.txtReceiverName.Size = new System.Drawing.Size(161, 27);
+            this.txtReceiverName.TabIndex = 8;
             // 
             // txtSubject
             // 
@@ -180,16 +182,16 @@
             this.label7.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label7.Location = new System.Drawing.Point(39, 18);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(135, 20);
+            this.label7.Size = new System.Drawing.Size(119, 20);
             this.label7.TabIndex = 1;
-            this.label7.Text = "使用者名稱(員編):";
+            this.label7.Text = "信箱帳號(員編):";
             // 
             // txtAccount
             // 
             this.txtAccount.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.txtAccount.Location = new System.Drawing.Point(173, 15);
             this.txtAccount.Name = "txtAccount";
-            this.txtAccount.Size = new System.Drawing.Size(352, 27);
+            this.txtAccount.Size = new System.Drawing.Size(162, 27);
             this.txtAccount.TabIndex = 7;
             // 
             // btnBack
@@ -203,14 +205,13 @@
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
-            // txtRecieverHost
+            // txtReceiverHost
             // 
-            this.txtRecieverHost.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.txtRecieverHost.Location = new System.Drawing.Point(327, 85);
-            this.txtRecieverHost.Name = "txtRecieverHost";
-            this.txtRecieverHost.Size = new System.Drawing.Size(198, 27);
-            this.txtRecieverHost.TabIndex = 18;
-            this.txtRecieverHost.Text = "@systex.com";
+            this.txtReceiverHost.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.txtReceiverHost.Location = new System.Drawing.Point(375, 85);
+            this.txtReceiverHost.Name = "txtReceiverHost";
+            this.txtReceiverHost.Size = new System.Drawing.Size(150, 27);
+            this.txtReceiverHost.TabIndex = 18;
             // 
             // btnOpenFolder
             // 
@@ -254,25 +255,47 @@
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(192, 12);
             this.label8.TabIndex = 22;
-            this.label8.Text = "請選擇只包含附件檔案的的資料夾 !";
+            this.label8.Text = "僅選擇只包含附件檔案的的資料夾 !";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label1.Location = new System.Drawing.Point(341, 19);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(109, 19);
+            this.label1.TabIndex = 23;
+            this.label1.Text = "(@systex.com)";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label9.Location = new System.Drawing.Point(343, 88);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(26, 20);
+            this.label9.TabIndex = 24;
+            this.label9.Text = "@";
             // 
             // EmailSender
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(566, 444);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.txtFinished);
             this.Controls.Add(this.txtSendStatus);
             this.Controls.Add(this.btnOpenFolder);
-            this.Controls.Add(this.txtRecieverHost);
+            this.Controls.Add(this.txtReceiverHost);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.txtFolder);
             this.Controls.Add(this.btnSelectFolder);
             this.Controls.Add(this.btnsend);
             this.Controls.Add(this.txtBody);
             this.Controls.Add(this.txtSubject);
-            this.Controls.Add(this.txtReciever);
+            this.Controls.Add(this.txtReceiverName);
             this.Controls.Add(this.txtAccount);
             this.Controls.Add(this.txtPass);
             this.Controls.Add(this.label6);
@@ -295,7 +318,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtPass;
-        private System.Windows.Forms.TextBox txtReciever;
+        private System.Windows.Forms.TextBox txtReceiverName;
         private System.Windows.Forms.TextBox txtSubject;
         private System.Windows.Forms.TextBox txtBody;
         private System.Windows.Forms.Button btnsend;
@@ -305,11 +328,13 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtAccount;
         private System.Windows.Forms.Button btnBack;
-        private System.Windows.Forms.TextBox txtRecieverHost;
+        private System.Windows.Forms.TextBox txtReceiverHost;
         private System.Windows.Forms.Button btnOpenFolder;
         private System.Windows.Forms.Label txtSendStatus;
         private System.Windows.Forms.Label txtFinished;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label9;
     }
 }
 
