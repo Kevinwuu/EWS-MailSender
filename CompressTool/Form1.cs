@@ -9,7 +9,6 @@ using System.Threading;
 using System.Windows.Forms;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using log4net;
-using log4net.Appender;
 using log4net.Config;
 using CompressTool.Properties;
 
@@ -19,24 +18,33 @@ namespace CompressTool
     public partial class CompressTool : Form
     {
 
+
+
+        // 取得Logger(Logger以Program的Type Name命名)
+        public static readonly ILog Log = LogManager.GetLogger(typeof(Program));
+        //Log目錄
+        private static string logPath = AppDomain.CurrentDomain.BaseDirectory + "/log";
+
         public EmailSender email = new EmailSender();
-
-
         // 壓縮完成路徑
         public string target_address;
+
 
         // 頁面初始化
         public CompressTool()
         {
             InitializeComponent();
-            Closing += new CancelEventHandler(this.CompressTool_Closing); //設定要觸發的事件
-            email.Hide();
+            Closing += new CancelEventHandler(this.CompressTool_Closing); //覆寫關閉事件
             txtEncryptPass.UseSystemPasswordChar = true;
             cbSeparateSize.Text = "";
             cbUnit.Text = "KB";
 
+            if (!Directory.Exists(logPath))
+            {
+                Directory.CreateDirectory(logPath);
+            }
         }
-        private static log4net.ILog Log = log4net.LogManager.GetLogger("");
+
 
         //開啟寄信頁面
         private void showEmail()
@@ -45,7 +53,7 @@ namespace CompressTool
             email.ShowDialog();
         }
 
-        // 視窗關閉
+        // 視窗關閉事件
         private void CompressTool_Closing(object sender, CancelEventArgs e)
         {
             DialogResult dr = MessageBox.Show("確定要關閉程式嗎?",
@@ -182,7 +190,8 @@ namespace CompressTool
             //設定文字框顯示字串and計算檔案大小
             if(radFile.Checked)
             {
-                if(String.IsNullOrEmpty(txtFilePath.Text))
+                txtFolderPath.Text = "";
+                if(string.IsNullOrEmpty(txtFilePath.Text))
                 {
                     textFileSize.Text = "";
                 }
@@ -193,9 +202,10 @@ namespace CompressTool
                     Calculate(length);
                 }
             }
-            else
+            if (radFolder.Checked)
             {
-                if (String.IsNullOrEmpty(txtFolderPath.Text))
+                txtFilePath.Text = "";
+                if (string.IsNullOrEmpty(txtFolderPath.Text))
                 {
                     textFileSize.Text = "";
                 }
@@ -223,6 +233,8 @@ namespace CompressTool
 
             try
             {
+
+
                 //判斷是否有空欄位
                 if (radFile.Checked == true)
                 {
@@ -230,7 +242,9 @@ namespace CompressTool
                     string name = Path.GetFileNameWithoutExtension(sourceFilePath);
                     if (hasFile)
                     {
+                        Log.Info("Compressing File...");
                         ZipFiles("File", sourceFilePath, targetPath, password, string.Empty);
+                        Log.Info("Compression Finished.");
                     }
                     else
                     {
@@ -244,7 +258,9 @@ namespace CompressTool
                     string targetPath = Path.GetDirectoryName(sourceFolderPath);
                     if (hasFolder)
                     {
+                        Log.Info("Compressing Folder...");
                         ZipFiles("Folder", sourceFolderPath, targetPath, password, string.Empty);
+                        Log.Info("Compression Finished.");
                     }
                     else
                     {
@@ -256,9 +272,9 @@ namespace CompressTool
             }
             catch(Exception ex)
             {
-                Log.Info(" info ");
+                Log.Fatal(ex);
                 MessageBox.Show("請選擇資料來源路徑 !", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Log.Info(" info ");
+
                 return;
             }
         }
@@ -268,8 +284,8 @@ namespace CompressTool
         private void ZipFiles(string type,string sourcePath ,string targetPath, string password, string comment)
         {
             string fragment = cbSeparateSize.Text;
-            bool isSeperate = !String.IsNullOrEmpty(fragment);
-            bool hasPassword = !String.IsNullOrEmpty(password);
+            bool isSeperate = !string.IsNullOrEmpty(fragment);
+            bool hasPassword = !string.IsNullOrEmpty(password);
             int sepSize = 0;
             int maxsize = 2 *1024 * 1024 * 1023;
             int minsize = 65536;
@@ -285,6 +301,7 @@ namespace CompressTool
                 }
                 catch(Exception ex)
                 {
+                    Log.Info(ex);
                     MessageBox.Show(ex.Message.ToString(),"ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
@@ -367,9 +384,10 @@ namespace CompressTool
                     thread.Start();
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MessageBox.Show(e.Message.ToString(), "Exception", MessageBoxButtons.OK,MessageBoxIcon.Error);
+                Log.Info(ex);
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButtons.OK,MessageBoxIcon.Error);
                 return;
             }
         }
@@ -440,11 +458,10 @@ namespace CompressTool
         }
 
 
-
-
         //開啟寄信頁面EmailSender
         public void btnMail_Click(object sender, EventArgs e)
         {
+            Log.Info("開啟 Email dialog");
             showEmail();
         }
 
@@ -462,8 +479,10 @@ namespace CompressTool
             }
         }
 
+        // 檢視頁面
         private void button1_Click(object sender, EventArgs e)
         {
+            Log.Info("檢視目錄");
             string myPath = @"";
             if (radFolder.Checked && !string.IsNullOrEmpty(txtFolderPath.Text))
             {
@@ -486,14 +505,24 @@ namespace CompressTool
             }
         }
 
-        // 記錄寄件資料
+        // 關閉頁面
         private void CompressTool_FormClosed(object sender, FormClosedEventArgs e)
         {
-
+            // 儲存寄信頁面輸入值
             Settings.Default.accountCache = email.accountCache;
             Settings.Default.receiverNameCache = email.receiverNameCache;
             Settings.Default.receiverHostCache = email.receiverHostCache;
             Settings.Default.Save();
+
+            Log.Info("----------------Closed--------------------");
+        }
+
+        private void CompressTool_Load(object sender, EventArgs e)
+        {
+            // 因為要讀取從App.config讀取設定，所以使用XmlConfigurator
+            XmlConfigurator.Configure();
+
+            Log.Info("----------------Start--------------------");
         }
     }
 }

@@ -5,23 +5,30 @@ using System.IO;
 using System.Net;
 using System.Windows.Forms;
 using CompressTool.Properties;
+using log4net;
 
 namespace CompressTool
 {
 
     public partial class EmailSender : Form
     {
-        public delegate void MyInvoke(string str1, string str2);
+        // 取得Logger(Logger以Program的Type Name命名)
+        public static ILog Log = LogManager.GetLogger(typeof(Program));
+
+
         public EmailSender()
         {           
             InitializeComponent();
             txtAccount.Focus();
+            //帶入記錄值
             txtAccount.Text = Settings.Default.accountCache;
             txtReceiverName.Text = Settings.Default.receiverNameCache;
             txtReceiverHost.Text = Settings.Default.receiverHostCache;
-        }
 
+
+        }
         public string accountCache,receiverNameCache,receiverHostCache;
+
 
 
         //private static MemoryCache cache = MemoryCache.Default;
@@ -36,6 +43,7 @@ namespace CompressTool
         #region 送出信件
         private void btnsend_Click(object sender, EventArgs e)
         {
+            Log.Info("開始傳送...");
             txtFinished.Text = "";
             txtSendStatus.Text = "";
             if (CheckDataGrid())
@@ -103,9 +111,11 @@ namespace CompressTool
                     Cursor.Current = Cursors.Default;
                     // Free the memory
                     message = null;
+                    Log.Info("傳送完成.");
                 } 
                 catch(Exception ex) 
                 {
+                    Log.Fatal(ex);
                     MessageBox.Show(ex.Message, "Error");
                     return;
                 }
@@ -116,6 +126,7 @@ namespace CompressTool
 
         private void btnSelectFolder_Click(object sender, EventArgs e)
         {
+            Log.Info("選擇附件資料夾.");
             CommonOpenFileDialog folder = new CommonOpenFileDialog();
             folder.IsFolderPicker = true;
             if (folder.ShowDialog() == CommonFileDialogResult.Ok)
@@ -128,13 +139,14 @@ namespace CompressTool
         // 返回
         private void btnBack_Click(object sender, EventArgs e)
         {
-
+            Log.Info("Hide Dialog.");
             this.Hide();
         }
 
         // 檢視附件資料夾
         private void btnOpenFolder_Click(object sender, EventArgs e)
         {
+            Log.Info("檢視附件資料夾.");
             string myPath = @"";
             myPath += txtFolder.Text;
             if (!string.IsNullOrEmpty(myPath))

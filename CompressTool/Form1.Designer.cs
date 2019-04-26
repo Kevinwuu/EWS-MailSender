@@ -122,8 +122,7 @@ namespace CompressTool
             this.cbSeparateSize.Items.AddRange(new object[] {
             "5",
             "10",
-            "14",
-            "400"});
+            "14"});
             this.cbSeparateSize.Location = new System.Drawing.Point(95, 251);
             this.cbSeparateSize.Name = "cbSeparateSize";
             this.cbSeparateSize.Size = new System.Drawing.Size(120, 25);
@@ -406,6 +405,7 @@ namespace CompressTool
             this.Name = "CompressTool";
             this.Text = "Form1";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CompressTool_FormClosed);
+            this.Load += new System.EventHandler(this.CompressTool_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
