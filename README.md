@@ -1,6 +1,8 @@
 # EWS MailSender
 A simple Winform project let user compress and seperate big file before send mail with attchments. 
 
+![](https://github.com/Kevinwuu/compressTool/blob/master/Image%20001.png?200x300)
+
 ## Usage
 Download **/realease**  and run the *.exe file.
 
