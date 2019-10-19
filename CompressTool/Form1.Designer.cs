@@ -57,7 +57,6 @@ namespace CompressTool
             this.label6 = new System.Windows.Forms.Label();
             this.status = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.btnOpenFolder = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -354,13 +353,6 @@ namespace CompressTool
             this.label8.TabIndex = 31;
             this.label8.Text = "%";
             // 
-            // btnOpenFolder
-            // 
-            this.btnOpenFolder.Location = new System.Drawing.Point(0, 0);
-            this.btnOpenFolder.Name = "btnOpenFolder";
-            this.btnOpenFolder.Size = new System.Drawing.Size(75, 23);
-            this.btnOpenFolder.TabIndex = 32;
-            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(391, 431);
@@ -387,7 +379,6 @@ namespace CompressTool
             this.Controls.Add(this.textUnit);
             this.Controls.Add(this.textFileSize);
             this.Controls.Add(this.btnMail);
-            this.Controls.Add(this.btnOpenFolder);
             this.Controls.Add(this.Compress);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnSelectFile);
@@ -445,7 +436,6 @@ namespace CompressTool
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label status;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button btnOpenFolder;
         private System.Windows.Forms.Button button1;
     }
 }

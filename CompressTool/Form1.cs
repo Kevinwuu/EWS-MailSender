@@ -17,9 +17,6 @@ namespace CompressTool
 
     public partial class CompressTool : Form
     {
-
-
-
         // 取得Logger(Logger以Program的Type Name命名)
         public static readonly ILog Log = LogManager.GetLogger(typeof(Program));
         //Log目錄
@@ -88,7 +85,6 @@ namespace CompressTool
 
                 Calculate(length);
                 Cursor.Current = Cursors.Default;
-
             }
         }
 
@@ -233,8 +229,6 @@ namespace CompressTool
 
             try
             {
-
-
                 //判斷是否有空欄位
                 if (radFile.Checked == true)
                 {
@@ -440,7 +434,7 @@ namespace CompressTool
             target_address = newDir;
         }
 
-        // 清除唯讀屬性
+        // 清除資料夾唯讀屬性，避免刪除非空資料夾時出錯
         private void ClearReadOnly(DirectoryInfo parentDirectory)
         {
             if (parentDirectory != null)
@@ -490,13 +484,16 @@ namespace CompressTool
             }
             if (radFile.Checked && !string.IsNullOrEmpty(txtFilePath.Text))
             {
-                myPath += Path.GetDirectoryName(txtFilePath.Text);
+                string basePath, relativePath;
+                basePath = Path.GetDirectoryName(txtFilePath.Text);
+                relativePath = Path.GetFileNameWithoutExtension(txtFilePath.Text);
+                myPath += Path.Combine(basePath, relativePath);
             }
 
             if (!string.IsNullOrEmpty(myPath))
             {
                 System.Diagnostics.Process prc = new System.Diagnostics.Process();
-                prc.StartInfo.FileName = myPath;
+                prc.StartInfo.FileName = myPath + "_壓縮檔";
                 prc.Start();
             }
             else
